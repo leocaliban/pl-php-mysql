@@ -15,24 +15,21 @@ gulp.task('html', () => {
             collapseInlineTagWhitespace: true
         }))
         .on('error', notify.onError('Erro: <%= error.message %>'))
-        .pipe(gulp.dest('C:\\wamp64\\www\\php'))
-        .pipe(browserSync.stream());
+        .pipe(gulp.dest('C:\\wamp64\\www\\php'));
 });
 
 // image
 gulp.task('image', () => {
     return gulp.src('*.jpg')
         .on('error', notify.onError('Erro: <%= error.message %>'))
-        .pipe(gulp.dest('C:\\wamp64\\www\\php'))
-        .pipe(browserSync.stream());
+        .pipe(gulp.dest('C:\\wamp64\\www\\php'));
 });
 
 // php
 gulp.task('php', () => {
     return gulp.src('report.php')
         .on('error', notify.onError('Erro: <%= error.message %>'))
-        .pipe(gulp.dest('C:\\wamp64\\www\\php'))
-        .pipe(browserSync.stream());
+        .pipe(gulp.dest('C:\\wamp64\\www\\php'));
 });
 
 // css

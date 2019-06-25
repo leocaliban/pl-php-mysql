@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Elvis Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.min.css" />
+</head>
+
+<body>
+    <img src="assets/images/blankface.jpg" alt="Imagem do Elvis sem rosto." class="elvis-image" />
+    <img name="elvislogo" src="assets/images/elvislogo.gif" class="elvis-logo" alt="Make Me Elvis" />
+    <p>Digite seu nome, sobrenome e e-mail para ser adicionado na lista de <strong>Make Me Elvis</strong> e receber promoções especiais.</p>
+    <form method="post" action="addemail.php">
+        <label for="primeiroNome">Primeiro nome:</label>
+        <input type="text" id="primeiroNome" name="primeiroNome" /><br />
+        <label for="sobrenome">Sobrenome:</label>
+        <input type="text" id="sobrenome" name="sobrenome" /><br />
+        <label for="email">E-mail:</label>
+        <input type="text" id="email" name="email" /><br />
+        <input type="submit" name="Submit" value="Submit" />
+    </form>
+</body>
+
+</html>

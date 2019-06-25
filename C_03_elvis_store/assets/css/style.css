@@ -1,0 +1,25 @@
+body,
+td,
+th {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+.elvis-image{
+  width: 161px;
+  height: 350px;
+  float: right;
+}
+
+.elvis-logo{
+  width: 229px;
+  height: 32px;
+  border: none;
+}
+
+form label {
+  display: inline-block;
+  width: 225px;
+  font-weight: bold;
+  padding: 2px;
+}

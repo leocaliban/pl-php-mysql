@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Elvis Store - Eviar E-mail</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.min.css" />
+</head>
+
+<body>
+    <img src="assets/images/blankface.jpg" alt="Imagem do Elvis sem rosto." class="elvis-image" />
+    <img name="elvislogo" src="assets/images/elvislogo.gif" class="elvis-logo" alt="Make Me Elvis" />
+    <p><strong>Privado:</strong> Apenas para uso de Elmer.<br />
+        Escreva e envie um e-mail para a sua lista de contatos.</p>
+    <form method="post" action="sendemail.php">
+        <label for="assunto">Assunto do e-mail:</label><br />
+        <input id="assunto" name="assunto" type="text" size="30" /><br />
+        <label for="mensagem">Corpo do e-mail:</label><br />
+        <textarea id="mensagem" name="mensagem" rows="8" cols="40"></textarea><br />
+        <input type="submit" name="Enviar" value="Submit" />
+    </form>
+</body>
+
+</html>

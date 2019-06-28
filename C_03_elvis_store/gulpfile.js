@@ -10,7 +10,7 @@ const notify = require('gulp-notify');
 
 // html
 gulp.task('html', () => {
-    return gulp.src('source/templates/addemail.html')
+    return gulp.src('source/templates/*.html')
         .pipe(htmlMIN({
             collapseInlineTagWhitespace: true
         }))
@@ -27,7 +27,7 @@ gulp.task('image', () => {
 
 // php
 gulp.task('php', () => {
-    return gulp.src('source/php/addemail.php')
+    return gulp.src('source/php/*.php')
         .on('error', notify.onError('Erro: <%= error.message %>'))
         .pipe(gulp.dest('C:\\wamp64\\www\\php\\elvis_store'));
 });

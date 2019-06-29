@@ -10,23 +10,38 @@
 </head>
 
 <body>
-
+    <img src="assets/images/blankface.jpg" alt="Imagem do Elvis sem rosto." class="elvis-image" />
+    <img name="elvislogo" src="assets/images/elvislogo.gif" class="elvis-logo" alt="Make Me Elvis" />
+    <p>
+        <strong>Privado:</strong> Apenas para uso de Elmer.<br />
+        Escreva e envie um e-mail para a sua lista de contatos.
+    </p>
+    <br />
     <?php
 
-    $email = 'nazzawd@gmail.com';
-    $assunto = $_POST['assunto'];
-    $mensagem = $_POST['mensagem'];
+    if (isset($_POST['submit'])) {
+        $email = 'nazzawd@gmail.com';
+        $assunto = $_POST['assunto'];
+        $mensagem = $_POST['mensagem'];
 
-    if (empty($assunto) && empty($mensagem)) {
-        echo 'Você esqueceu de informar o assunto e a mensagem do e-mail <br />';
-    }
+        $exibir_formulario = false;
 
-    if (empty($assunto) && (!empty($mensagem))) {
-        echo 'Você esqueceu de informar o assunto do e-mail <br />';
-    }
+        if (empty($assunto) && empty($mensagem)) {
+            echo 'Você esqueceu de informar o assunto e a mensagem do e-mail <br />';
+            $exibir_formulario = true;
+        }
 
-    if ((!empty($assunto)) && empty($mensagem)) {
-        echo 'Você esqueceu de informar a mensagem do e-mail <br />';
+        if (empty($assunto) && (!empty($mensagem))) {
+            echo 'Você esqueceu de informar o assunto do e-mail <br />';
+            $exibir_formulario = true;
+        }
+
+        if ((!empty($assunto)) && empty($mensagem)) {
+            echo 'Você esqueceu de informar a mensagem do e-mail <br />';
+            $exibir_formulario = true;
+        }
+    } else {
+        $exibir_formulario = true;
     }
 
     if ((!empty($assunto)) && (!empty($mensagem))) {
@@ -54,6 +69,20 @@
         mysqli_close($dbc);
     }
 
+    if ($exibir_formulario) {
+        ?>
+
+        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+            <label for="assunto">Assunto do e-mail:</label><br />
+            <input id="assunto" name="assunto" type="text" size="30" value="<?php echo $assunto; ?>" />
+            <br />
+            <label for="mensagem">Corpo do e-mail:</label><br />
+            <textarea id="mensagem" name="mensagem" rows="8" cols="40"><?php echo $mensagem; ?></textarea><br />
+            <input type="submit" name="submit" value="Enviar" />
+        </form>
+
+    <?php
+    }
     ?>
 
 </body>

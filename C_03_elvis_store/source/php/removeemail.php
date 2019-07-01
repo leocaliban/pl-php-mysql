@@ -22,6 +22,24 @@
         $dbc = mysqli_connect('localhost', 'root', 'root', 'php_elvis_store')
             or die('Erro de conexão com MySQL server.');
 
+        if (isset($_POST['submit'])) {
+            $quantidade = 0;
+            $mensagem = 'O cliente foi removido da sua lista com sucesso!';
+            foreach ($_POST['todelete'] as $id) {
+                $query = "DELETE FROM email_list WHERE id = $id";
+
+                mysqli_query($dbc, $query)
+                    or die('Erro na consulta do banco de dados');
+
+                $quantidade++;
+            }
+
+            if ($quantidade > 1) {
+                $mensagem = $quantidade . ' clientes foram removidos da lista com sucesso!';
+            }
+            echo $mensagem . '<br/>';
+        }
+
         $query = "SELECT * FROM email_list";
         $result = mysqli_query($dbc, $query);
 
@@ -32,25 +50,8 @@
             echo ' ' . $row['email'];
             echo '<br />';
         }
+
         mysqli_close($dbc);
-        $s = false;
-
-        if ($s) {
-            $email = $_POST['email'];
-
-
-
-            $query = "DELETE FROM email_list WHERE email = '$email'";
-
-            mysqli_query($dbc, $query)
-                or die('Erro na consulta do banco de dados');
-
-            echo 'Você foi removido com sucesso: ' . $email;
-
-            mysqli_close($dbc);
-        }
-
-
         ?>
         <br />
         <input type="submit" name="submit" value="Remover" />

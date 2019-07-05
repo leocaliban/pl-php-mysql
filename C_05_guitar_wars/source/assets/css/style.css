@@ -1,0 +1,74 @@
+.error {
+  font-weight: bold;
+  color: #DCD28C;
+}
+
+.score {
+  font-size: 150%;
+  color: #B9973F;
+}
+
+p{
+  color: #629FBA;
+}
+
+a{
+  color: #DCCF6F;
+  font-weight: bold;
+}
+
+.scoreinfo {
+  vertical-align: top;
+  padding-right: 15px;
+  border-bottom: 1px solid #9680BF;
+}
+
+
+
+h2 {
+  color: #b9973f;
+}
+
+body {
+  padding: 10px;
+  margin: 0;
+  background-color: #36407f;
+}
+
+body,
+td,
+th {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+
+form {
+  color: #b9973f;
+  background-color: #36407f;
+}
+
+hr {
+  border-color: #dcc58c;
+}
+
+form label {
+  display: inline-block;
+  width: 225px;
+  font-weight: bold;
+  margin: 10px 0;
+  padding: 2px;
+}
+
+
+table{
+  margin: 0 auto;
+  background-color: #121B53;
+  border: 1px solid #9680BF;
+  color:#fff;
+  padding: 20px;
+}
+
+tr:last-child .scoreinfo{
+  border-bottom: none;
+}

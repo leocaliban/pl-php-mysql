@@ -13,27 +13,34 @@
   <h2>Guitar Wars - Registre o sua maior pontuação</h2>
 
   <?php
+  define('MY_UPLOADPATH', 'assets/images/');
+
   if (isset($_POST['submit'])) {
 
     $nome = $_POST['nome'];
     $pontuacao = $_POST['pontuacao'];
+    $imagem = $_FILES['imagem']['name'];
 
-    if (!empty($nome) && !empty($pontuacao)) {
-      $dbc = mysqli_connect('localhost', 'root', 'root', 'php_guitar_wars')
-        or die('Erro de conexão com MySQL server.');
+    if (!empty($nome) && !empty($pontuacao) && !empty($imagem)) {
+      $target_path = MY_UPLOADPATH . $imagem;
+      if (move_uploaded_file($_FILES['imagem']['tmp_name'], $target_path)) {
+        $dbc = mysqli_connect('localhost', 'root', 'root', 'php_guitar_wars')
+          or die('Erro de conexão com MySQL server.');
 
-      $query = "INSERT INTO guitarwars VALUES (0, NOW(), '$nome', '$pontuacao')";
-      mysqli_query($dbc, $query);
+        $query = "INSERT INTO guitarwars VALUES (0, NOW(), '$nome', '$pontuacao', '$imagem')";
+        mysqli_query($dbc, $query) or die('Ocorreu um erro na query.');
 
-      echo '<p>Sua pontuação foi registrada com sucesso!</p>';
-      echo '<p><strong>Nome:</strong> ' . $nome . '<br />';
-      echo '<strong>Pontuação:</strong> ' . $pontuacao . '</p>';
-      echo '<p><a href="index.php">&lt;&lt; Voltar para ranking</a></p>';
+        echo '<p>Sua pontuação foi registrada com sucesso!</p>';
+        echo '<p><strong>Nome:</strong> ' . $nome . '<br />';
+        echo '<strong>Pontuação:</strong> ' . $pontuacao . '</p>';
+        echo '<p><a href="index.php">&lt;&lt; Voltar para ranking</a></p>';
+        echo '<img src="' . MY_UPLOADPATH . $imagem . '" alt="Foto de pontuação." />';
 
-      $nome = "";
-      $pontuacao = "";
+        $nome = "";
+        $pontuacao = "";
 
-      mysqli_close($dbc);
+        mysqli_close($dbc);
+      }
     } else {
       echo '<p class="error">Por favor preencha todos os campos do formulário.</p>';
     }
@@ -41,11 +48,15 @@
   ?>
 
   <hr />
-  <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+  <form enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <input type="hidden" name="MAX_FILE_SIZE" value="32768">
     <label for="nome">Nome:</label>
     <input type="text" id="nome" name="nome" value="<?php if (!empty($nome)) echo $nome; ?>" /><br />
     <label for="pontuacao">Pontuação:</label>
     <input type="text" id="pontuacao" name="pontuacao" value="<?php if (!empty($pontuacao)) echo $pontuacao; ?>" />
+    <br />
+    <label for="imagem">Envie uma imagem:</label>
+    <input type="file" id="imagem" name="imagem">
     <hr />
     <input type="submit" value="Enviar" name="submit" />
   </form>

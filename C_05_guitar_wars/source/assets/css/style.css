@@ -19,7 +19,6 @@ a{
 
 .scoreinfo {
   vertical-align: top;
-  padding-right: 15px;
   border-bottom: 1px solid #9680BF;
 }
 
@@ -71,4 +70,14 @@ table{
 
 tr:last-child .scoreinfo{
   border-bottom: none;
+}
+
+td{
+  position: relative;
+}
+
+img{
+  width: 150px;
+  position: relative;
+
 }

@@ -17,6 +17,8 @@
   <hr />
 
   <?php
+  define('MY_UPLOADPATH', 'assets/images/');
+
   $dbc = mysqli_connect('localhost', 'root', 'root', 'php_guitar_wars')
     or die('Erro de conexão com MySQL server.');
 
@@ -28,7 +30,13 @@
     echo '<tr><td class="scoreinfo">';
     echo '<span class="score">' . $row['pontuacao'] . '</span><br />';
     echo '<strong>Nome:</strong> ' . $row['nome'] . '<br />';
-    echo '<strong>Data:</strong> ' . $row['data'] . '</td></tr>';
+    echo '<strong>Data:</strong> ' . $row['data'] . '<br />';
+
+    if (is_file(MY_UPLOADPATH . $row['imagem']) && filesize(MY_UPLOADPATH . $row['imagem']) > 0) {
+      echo '<img src="' . MY_UPLOADPATH . $row['imagem'] . '" alt="Foto de pontuação." /></td></tr>';
+    } else {
+      echo '<img src="assets/images/not-image.png" alt="Foto de pontuação." /></td></tr>';
+    }
   }
   echo '</table>';
 

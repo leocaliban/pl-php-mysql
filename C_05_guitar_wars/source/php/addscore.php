@@ -13,7 +13,8 @@
   <h2>Guitar Wars - Registre o sua maior pontuação</h2>
 
   <?php
-  define('MY_UPLOADPATH', 'assets/images/');
+  require_once('constants/app-vars.php');
+  require_once('constants/connection-vars.php');
 
   if (isset($_POST['submit'])) {
 
@@ -22,19 +23,20 @@
     $imagem = $_FILES['imagem']['name'];
 
     if (!empty($nome) && !empty($pontuacao) && !empty($imagem)) {
-      $target_path = MY_UPLOADPATH . $imagem;
+      $file_name = time() . $imagem;
+      $target_path = MY_UPLOADPATH . $file_name;
       if (move_uploaded_file($_FILES['imagem']['tmp_name'], $target_path)) {
-        $dbc = mysqli_connect('localhost', 'root', 'root', 'php_guitar_wars')
+        $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
           or die('Erro de conexão com MySQL server.');
 
-        $query = "INSERT INTO guitarwars VALUES (0, NOW(), '$nome', '$pontuacao', '$imagem')";
+        $query = "INSERT INTO guitarwars VALUES (0, NOW(), '$nome', '$pontuacao', '$file_name')";
         mysqli_query($dbc, $query) or die('Ocorreu um erro na query.');
 
         echo '<p>Sua pontuação foi registrada com sucesso!</p>';
         echo '<p><strong>Nome:</strong> ' . $nome . '<br />';
         echo '<strong>Pontuação:</strong> ' . $pontuacao . '</p>';
         echo '<p><a href="index.php">&lt;&lt; Voltar para ranking</a></p>';
-        echo '<img src="' . MY_UPLOADPATH . $imagem . '" alt="Foto de pontuação." />';
+        echo '<img src="' . MY_UPLOADPATH . $file_name . '" alt="Foto de pontuação." />';
 
         $nome = "";
         $pontuacao = "";

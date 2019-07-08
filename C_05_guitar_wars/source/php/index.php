@@ -17,9 +17,10 @@
   <hr />
 
   <?php
-  define('MY_UPLOADPATH', 'assets/images/');
+  require_once('constants/app-vars.php');
+  require_once('constants/connection-vars.php');
 
-  $dbc = mysqli_connect('localhost', 'root', 'root', 'php_guitar_wars')
+  $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
     or die('Erro de conexão com MySQL server.');
 
   $query = "SELECT * FROM guitarwars";

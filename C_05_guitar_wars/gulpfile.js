@@ -27,7 +27,7 @@ gulp.task('image', () => {
 
 // php
 gulp.task('php', () => {
-    return gulp.src('source/php/*.php')
+    return gulp.src('source/php/**')
         .on('error', notify.onError('Erro: <%= error.message %>'))
         .pipe(gulp.dest('C:\\wamp64\\www\\php\\guitar_wars'));
 });

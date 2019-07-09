@@ -23,11 +23,17 @@
   $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
     or die('Erro de conexão com MySQL server.');
 
-  $query = "SELECT * FROM guitarwars";
+  $query = "SELECT * FROM guitarwars ORDER BY pontuacao DESC, data ASC";
   $data = mysqli_query($dbc, $query);
 
   echo '<table>';
+  $aux = 0;
+
   while ($row = mysqli_fetch_array($data)) {
+    if ($aux == 0) {
+      echo '<tr><td colspan="2" class="topscore">Top Score: ' . $row['pontuacao'] . '</td></tr>';
+    }
+
     echo '<tr><td class="scoreinfo">';
     echo '<span class="score">' . $row['pontuacao'] . '</span><br />';
     echo '<strong>Nome:</strong> ' . $row['nome'] . '<br />';
@@ -38,7 +44,9 @@
     } else {
       echo '<img src="assets/images/not-image.png" alt="Foto de pontuação." /></td></tr>';
     }
+    $aux++;
   }
+
   echo '</table>';
 
   mysqli_close($dbc);

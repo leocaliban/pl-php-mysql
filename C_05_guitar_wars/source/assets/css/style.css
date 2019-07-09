@@ -22,6 +22,12 @@ a{
   border-bottom: 1px solid #9680BF;
 }
 
+.topscore{
+  text-align: center;
+  font-size: 200%;
+  background-color: #36407f;
+  color: #fff;
+}
 
 
 h2 {

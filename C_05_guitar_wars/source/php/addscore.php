@@ -21,28 +21,41 @@
     $nome = $_POST['nome'];
     $pontuacao = $_POST['pontuacao'];
     $imagem = $_FILES['imagem']['name'];
+    $imagem_type = $_FILES['imagem']['type'];
+    $imagem_size = $_FILES['imagem']['size'];
 
     if (!empty($nome) && !empty($pontuacao) && !empty($imagem)) {
-      $file_name = time() . $imagem;
-      $target_path = MY_UPLOADPATH . $file_name;
-      if (move_uploaded_file($_FILES['imagem']['tmp_name'], $target_path)) {
-        $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
-          or die('Erro de conexão com MySQL server.');
+      if ((($imagem_type == 'image/gif') || ($imagem_type == 'image/jpeg') || ($imagem_type == 'image/pjpeg') || ($imagem_type == 'image/png'))
+        && ($imagem_size > 0) && ($imagem_size <= MY_MAXFILESIZE)
+      ) {
+        if ($_FILES['imagem']['error'] == 0) {
+          $file_name = time() . $imagem;
+          $target_path = MY_UPLOADPATH . $file_name;
+          if (move_uploaded_file($_FILES['imagem']['tmp_name'], $target_path)) {
+            $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
+              or die('Erro de conexão com MySQL server.');
 
-        $query = "INSERT INTO guitarwars VALUES (0, NOW(), '$nome', '$pontuacao', '$file_name')";
-        mysqli_query($dbc, $query) or die('Ocorreu um erro na query.');
+            $query = "INSERT INTO guitarwars VALUES (0, NOW(), '$nome', '$pontuacao', '$file_name')";
+            mysqli_query($dbc, $query) or die('Ocorreu um erro na query.');
 
-        echo '<p>Sua pontuação foi registrada com sucesso!</p>';
-        echo '<p><strong>Nome:</strong> ' . $nome . '<br />';
-        echo '<strong>Pontuação:</strong> ' . $pontuacao . '</p>';
-        echo '<p><a href="index.php">&lt;&lt; Voltar para ranking</a></p>';
-        echo '<img src="' . MY_UPLOADPATH . $file_name . '" alt="Foto de pontuação." />';
+            echo '<p>Sua pontuação foi registrada com sucesso!</p>';
+            echo '<p><strong>Nome:</strong> ' . $nome . '<br />';
+            echo '<strong>Pontuação:</strong> ' . $pontuacao . '</p>';
+            echo '<p><a href="index.php">&lt;&lt; Voltar para ranking</a></p>';
+            echo '<img src="' . MY_UPLOADPATH . $file_name . '" alt="Foto de pontuação." />';
 
-        $nome = "";
-        $pontuacao = "";
+            $nome = "";
+            $pontuacao = "";
 
-        mysqli_close($dbc);
+            mysqli_close($dbc);
+          } else {
+            echo '<p class="error">Desculpe, ocorreu um problema como o envio da sua imagem.</p>';
+          }
+        }
+      } else {
+        echo '<p class="error">Desculpe, sua imagem deve ser no formato GIF, JPEG ou PNG, tamanho máximo é de ' . (MY_MAXFILESIZE / 1024) . ' KB.</p>';
       }
+      @unlink($_FILES['imagem']['tmp_name']);
     } else {
       echo '<p class="error">Por favor preencha todos os campos do formulário.</p>';
     }

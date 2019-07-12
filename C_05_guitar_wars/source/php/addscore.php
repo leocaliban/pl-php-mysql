@@ -35,7 +35,7 @@
             $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
               or die('Erro de conexão com MySQL server.');
 
-            $query = "INSERT INTO guitarwars VALUES (0, NOW(), '$nome', '$pontuacao', '$file_name')";
+            $query = "INSERT INTO guitarwars VALUES (0, NOW(), '$nome', '$pontuacao', '$file_name', 0)";
             mysqli_query($dbc, $query) or die('Ocorreu um erro na query.');
 
             echo '<p>Sua pontuação foi registrada com sucesso!</p>';
@@ -64,7 +64,7 @@
 
   <hr />
   <form enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-    <input type="hidden" name="MAX_FILE_SIZE" value="32768">
+    <input type="hidden" name="MAX_FILE_SIZE" value="600000">
     <label for="nome">Nome:</label>
     <input type="text" id="nome" name="nome" value="<?php if (!empty($nome)) echo $nome; ?>" /><br />
     <label for="pontuacao">Pontuação:</label>

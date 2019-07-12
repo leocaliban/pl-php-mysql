@@ -36,7 +36,12 @@ require_once('authorize.php');
         echo '<td>' . $row['data'] . '</td>';
         echo '<td>' . $row['pontuacao'] . '</td>';
 
-        echo '<td><a href="removescore.php?id=' . $row['id'] . '&amp;data=' . $row['data'] . '&amp;nome=' . $row['nome'] . '&amp;pontuacao=' . $row['pontuacao'] . '&amp;imagem=' . $row['imagem'] . '">Remover</a></td></tr>';
+        echo '<td><a href="removescore.php?id=' . $row['id'] . '&amp;data=' . $row['data'] . '&amp;nome=' . $row['nome'] . '&amp;pontuacao=' . $row['pontuacao'] . '&amp;imagem=' . $row['imagem'] . '">Remover</a> ';
+
+        if ($row['aprovado'] == 0) {
+            echo '/ <a href="aprove.php?id=' . $row['id'] . '&amp;data=' . $row['data'] . '&amp;nome=' . $row['nome'] . '&amp;pontuacao=' . $row['pontuacao'] . '&amp;imagem=' . $row['imagem'] . '">Aprovar</a></td></tr>';
+        }
+        echo ('</td></tr>');
     }
     echo '</table>';
 

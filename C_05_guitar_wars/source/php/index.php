@@ -14,6 +14,8 @@
 
   <p>Bem vindo ao Guitar Warrior, você gostaria de entrar no ranking mundial? Envie sua pontuação clicando <a href="addscore.php">AQUI</a>.</p>
 
+  <br>
+  <a href="admin.php">Gerenciar pontuações</a>
   <hr />
 
   <?php
@@ -23,7 +25,7 @@
   $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
     or die('Erro de conexão com MySQL server.');
 
-  $query = "SELECT * FROM guitarwars ORDER BY pontuacao DESC, data ASC";
+  $query = "SELECT * FROM guitarwars WHERE aprovado = 1 ORDER BY pontuacao DESC, data ASC";
   $data = mysqli_query($dbc, $query);
 
   echo '<table>';

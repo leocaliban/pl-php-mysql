@@ -18,13 +18,16 @@
 
   if (isset($_POST['submit'])) {
 
-    $nome = $_POST['nome'];
-    $pontuacao = $_POST['pontuacao'];
-    $imagem = $_FILES['imagem']['name'];
+    $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
+      or die('Erro de conexão com MySQL server.');
+
+    $nome = mysqli_real_escape_string($dbc, trim($_POST['nome']));
+    $pontuacao = mysqli_real_escape_string($dbc, trim($_POST['pontuacao']));
+    $imagem = mysqli_real_escape_string($dbc, trim($_FILES['imagem']['name']));
     $imagem_type = $_FILES['imagem']['type'];
     $imagem_size = $_FILES['imagem']['size'];
 
-    if (!empty($nome) && !empty($pontuacao) && !empty($imagem)) {
+    if (!empty($nome) && is_numeric($pontuacao) && !empty($imagem)) {
       if ((($imagem_type == 'image/gif') || ($imagem_type == 'image/jpeg') || ($imagem_type == 'image/pjpeg') || ($imagem_type == 'image/png'))
         && ($imagem_size > 0) && ($imagem_size <= MY_MAXFILESIZE)
       ) {
@@ -32,10 +35,8 @@
           $file_name = time() . $imagem;
           $target_path = MY_UPLOADPATH . $file_name;
           if (move_uploaded_file($_FILES['imagem']['tmp_name'], $target_path)) {
-            $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
-              or die('Erro de conexão com MySQL server.');
 
-            $query = "INSERT INTO guitarwars VALUES (0, NOW(), '$nome', '$pontuacao', '$file_name', 0)";
+            $query = "INSERT INTO guitarwars (data, nome, pontuacao, imagem) VALUES (NOW(), '$nome', '$pontuacao', '$file_name')";
             mysqli_query($dbc, $query) or die('Ocorreu um erro na query.');
 
             echo '<p>Sua pontuação foi registrada com sucesso!</p>';

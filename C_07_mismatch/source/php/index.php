@@ -32,7 +32,7 @@
         or die('Erro de conexão com MySQL server.');
 
       // Recuperar dados do BD
-      $query = "SELECT id, nome, cidade, estado, imagem FROM usuario WHERE nome IS NOT NULL ORDER BY data_cadastro DESC LIMIT 7";
+      $query = "SELECT id, nome, cidade, estado, imagem FROM usuario WHERE nome IS NOT NULL ORDER BY data_cadastro DESC LIMIT 10";
 
       $data = mysqli_query($dbc, $query);
 

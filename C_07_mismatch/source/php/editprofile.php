@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+require_once('login.php');
+?>
 <html lang="pt-br">
 
 <head>
@@ -31,7 +34,7 @@
 
         $foto_antiga = mysqli_real_escape_string($dbc, trim($_POST['foto_antiga']));
 
-        $nova_foto = mysqli_real_escape_string($dbc, trim($_FILES['nova_foto']['nome']));
+        $nova_foto = mysqli_real_escape_string($dbc, trim($_FILES['nova_foto']['name']));
         $tipo_nova_foto = $_FILES['nova_foto']['type'];
         $tamanho_nova_foto = $_FILES['nova_foto']['size'];
 

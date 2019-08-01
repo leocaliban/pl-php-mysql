@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+require_once('login.php');
+?>
 <html lang="pt-br">
 
 <head>

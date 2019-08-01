@@ -1,22 +1,116 @@
+@import url("https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister&display=swap");
+
 .error {
-    font-weight: bold;
-    color: #FF0000;
-  }
+  font-weight: bold;
+  color: #ff0000;
+}
+
+.login {
+  font-style: italic;
+}
+
+form label {
+  display: inline-block;
+  width: 150px;
+  font-weight: bold;
+}
+
+td.label {
+  font-weight: bold;
+}
+
+img.profile {
+  vertical-align: top;
+}
+
+body {
+  font-family: "Love Ya Like A Sister", cursive;
+  background-color: #1f212d;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  height: 40px;
+  background-color: #efeeec;
+  padding: 0 10px;
+}
+
+nav .menu {
+  display: inline-block;
+  text-decoration: none;
+  color: #efeeec;
+  background-color: #ac1798;
+  padding: 5px 12px;
+  margin-top: 5px;
+  border-radius: 15px;
+}
+
+nav .menu:hover {
+  background-color: rgb(117, 16, 104);
+}
+
+header {
+  height: 500px;
+  background: linear-gradient(to bottom, rgba(0, 0, 255, 0.13), #363749), url("../images/digital-love.jpg");
+  background-attachment: fixed;
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+header h2,
+header h3,
+section h2 {
+  text-align: center;
+  color: rgb(240, 240, 240);
+  margin: 0;
+  padding: 0;
+}
+
+header h2 {
+  font-size: 4em;
+}
+
+header h3 {
+  font-size: 3em;
+}
+
+.text {
+  padding-top: 180px;
+}
+
+section h2 {
+  padding-top: 20px;
+  letter-spacing: 0.5em;
+}
+
+main {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  margin: 10px;
+}
+
+.card {
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #efeeec;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.card img {
+  border-radius: 50%;
+}
+
+.card-name, .card-city {
+  font-weight: bold;
   
-  .login {
-    font-style: italic;
-  }
-  
-  form label {
-    display: inline-block;
-    width: 150px;
-    font-weight: bold;
-  }
-  
-  td.label {
-    font-weight: bold;
-  }
-  
-  img.profile {
-    vertical-align: top;
-  }
+  color: #ac1798;
+}
+
+.card-name {
+  padding: 6px 0 0 0;
+}

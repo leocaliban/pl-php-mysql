@@ -10,43 +10,50 @@
 </head>
 
 <body>
-  <h2>Mismatch - Onde os opostos se atraem!</h2>
+  <nav>
+    <a class="menu" href="viewprofile.php">Ver Perfil</a>
+    <a class="menu" href="editprofile.php">Editar Perfil</a>
+  </nav>
+  <header>
+    <div class="text">
+      <h2>Mismatch</h2>
+      <h3>Onde os opostos se atraem!</h3>
+    </div>
+  </header>
+  <section>
+    <h2>ÚLTIMOS MEMBROS</h2>
+    <main>
+      <?php
+      require_once('constants/app-vars.php');
+      require_once('constants/connection-vars.php');
 
-  <?php
-  require_once('constants/app-vars.php');
-  require_once('constants/connection-vars.php');
+      // Conexão com BD
+      $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
+        or die('Erro de conexão com MySQL server.');
+
+      // Recuperar dados do BD
+      $query = "SELECT id, nome, cidade, estado, imagem FROM usuario WHERE nome IS NOT NULL ORDER BY data_cadastro DESC LIMIT 7";
+
+      $data = mysqli_query($dbc, $query);
 
 
-  // Menu
-  echo '&#10084; <a href="viewprofile.php">Ver Perfil</a><br />';
-  echo '&#10084; <a href="editprofile.php">Editar Perfil</a><br />';
+      while ($row = mysqli_fetch_array($data)) {
+        echo '<div class="card">';
+        if (is_file(MM_UPLOADPATH . $row['imagem']) && filesize(MM_UPLOADPATH . $row['imagem']) > 0) {
 
-  // Conexão com BD
-  $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
-    or die('Erro de conexão com MySQL server.');
+          echo '<img src="' . MM_UPLOADPATH . $row['imagem'] . '" alt="' . $row['nome'] . '" />';
+        } else {
+          echo '<img src="' . MM_UPLOADPATH . 'not-image.jpg' . '" alt="' . $row['nome'] . '" />';
+        }
 
-  // Recuperar dados do BD
-  $query = "SELECT id, nome, imagem FROM usuario WHERE nome IS NOT NULL ORDER BY data_cadastro DESC LIMIT 5";
-
-  $data = mysqli_query($dbc, $query);
-
-  echo '<h4>Últimos membros:</h4>';
-  echo '<table>';
-
-  while ($row = mysqli_fetch_array($data)) {
-    if (is_file(MM_UPLOADPATH . $row['imagem']) && filesize(MM_UPLOADPATH . $row['imagem']) > 0) {
-
-      echo '<tr><td><img src="' . MM_UPLOADPATH . $row['imagem'] . '" alt="' . $row['nome'] . '" /></td>';
-    } else {
-      echo '<tr><td><img src="' . MM_UPLOADPATH . 'not-image.jpg' . '" alt="' . $row['nome'] . '" /></td>';
-    }
-
-    echo '<td>' . $row['nome'] . '</td></tr>';
-  }
-  echo '</table>';
-  mysqli_close($dbc);
-  ?>
-
+        echo '<div class="card-name">' . $row['nome'] . '</div>';
+        echo '<div class="card-city">' . $row['cidade'] . ' - ' . $row['estado'] . '</div>';
+        echo '</div>';
+      }
+      mysqli_close($dbc);
+      ?>
+    </main>
+  </section>
 
 </body>
 

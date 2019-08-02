@@ -11,6 +11,7 @@
 
 <body>
   <nav>
+    <a class="menu" href="signup.php">Criar conta</a>
     <a class="menu" href="viewprofile.php">Ver Perfil</a>
     <a class="menu" href="editprofile.php">Editar Perfil</a>
   </nav>

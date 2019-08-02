@@ -4,7 +4,7 @@ require_once('constants/connection-vars.php');
 if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
     header('HTTP/1.1 401 Unauthorized');
     header('WWW-Authenticate: Basic realm="Mismatch"');
-    exit('<h2>Mismatch</h2>Desculpe, você deve digitar o nome de usuário e senha válidos para acessar essa página.');
+    exit('<h2>Mismatch</h2>Desculpe, você deve digitar o nome de usuário e senha válidos para acessar essa página. Se você ainda não é membro, <a href="signup.php">REGISTRE-SE</a>.');
 }
 
 $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
@@ -23,7 +23,7 @@ if (mysqli_num_rows($data) == 1) {
 } else {
     header('HTTP/1.1 401 Unauthorized');
     header('WWW-Authenticate: Basic realm="Mismatch"');
-    exit('<h2>Mismatch</h2>Desculpe, você deve digitar o nome de usuário e senha válidos para acessar essa página.');
+    exit('<h2>Mismatch</h2>Desculpe, você deve digitar o nome de usuário e senha válidos para acessar essa página. Se você ainda não é membro, <a href="signup.php">REGISTRE-SE</a>.');
 }
 echo ('<p class="login">Seja bem vindo ao Mismatch ' . $nome_usuario . '.</p>');
 

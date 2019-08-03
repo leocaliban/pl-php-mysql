@@ -10,13 +10,23 @@
   font-weight: bold;
   letter-spacing: 0.2em;
   color: #ffffff;
-  background-color: #ff606d;
+  background-color: #ff818b;
   margin: 0;
   border: 2px solid #cc4c56;
 }
 
 .login {
   font-style: italic;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  color: #ac1798;
+  background-color: #efeeec;
+  margin: 0;
+  float: right;
+  margin-right: 40px;
 }
 
 form label {
@@ -35,7 +45,7 @@ img.profile {
 
 body {
   font-family: "Love Ya Like A Sister", cursive;
-  background-color: #1f212d;
+  background-color: #efeeec;
   margin: 0;
   padding: 0;
 }
@@ -78,6 +88,10 @@ section h2 {
   padding: 0;
 }
 
+section h2{
+  color: #223254;
+}
+
 header h2 {
   font-size: 4em;
 }
@@ -98,7 +112,7 @@ section h2 {
 
 main {
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   margin: 40px;
 }
@@ -106,14 +120,19 @@ main {
 .card {
   border-radius: 5px;
   padding: 10px;
-  background-color: #efeeec;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   text-align: center;
+  border: 1px solid #796B8C;
+  box-shadow:0px 0px 3px #333333;
+  
 }
 
 .card img {
   border-radius: 50%;
+  border: 5px solid #eeeeee;
+  box-shadow:0px 0px 4px #333333;
 }
 
 .card-name,
@@ -261,4 +280,24 @@ main {
 
 .cadastro-button:focus{
   box-shadow:0px 0px 6px #700f63;
+}
+
+.view-section{
+  border-top: 2px solid #727070;
+  border-bottom: 2px solid #727070;
+  background-color: #efeeec; 
+  padding: 0 40px 20px 40px;
+}
+
+.view-title{
+  text-align: left;
+  color: #223254;
+  font-size: 1.5em;
+  padding: 15px 0;
+  letter-spacing: 0.1em;
+}
+
+.view-image{
+  border-radius: 50%;
+  box-shadow:0px 0px 16px #333333;
 }

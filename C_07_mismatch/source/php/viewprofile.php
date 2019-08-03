@@ -15,8 +15,7 @@ require_once('login.php');
 <body>
   <nav>
     <a class="menu" href="index.php">Início</a>
-    <a class="menu" href="signup.php">Criar conta</a>
-    <a class="menu" href="editprofile.php">Editar Perfil</a>
+    <a class="menu" href="editprofile.php">Atualizar Perfil</a>
   </nav>
 
   <section class="view-section">
@@ -86,6 +85,7 @@ require_once('login.php');
     mysqli_close($dbc);
     ?>
   </section>
+  
 </body>
 
 </html>

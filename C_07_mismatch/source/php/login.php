@@ -25,6 +25,6 @@ if (mysqli_num_rows($data) == 1) {
     header('WWW-Authenticate: Basic realm="Mismatch"');
     exit('<h2>Mismatch</h2>Desculpe, você deve digitar o nome de usuário e senha válidos para acessar essa página. Se você ainda não é membro, <a href="signup.php">REGISTRE-SE</a>.');
 }
-echo ('<p class="login">Seja bem vindo ao Mismatch ' . $nome_usuario . '.</p>');
+echo ('<p class="login">Bem vindo ' . $nome_usuario . '!</p>');
 
 ?>

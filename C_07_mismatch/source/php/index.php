@@ -11,9 +11,22 @@
 
 <body>
   <nav>
-    <a class="menu" href="signup.php">Criar conta</a>
-    <a class="menu" href="viewprofile.php">Ver Perfil</a>
-    <a class="menu" href="editprofile.php">Editar Perfil</a>
+    <?php
+    if (isset($_COOKIE['username'])) {
+      echo ('<p class="login">Bem vindo ' . $_COOKIE['username'] . '.</p>');
+      ?>
+      <a class="menu" href="viewprofile.php">Ver Perfil</a>
+      <a class="menu" href="editprofile.php">Atualizar Perfil</a>
+      <a class="menu" href="logout.php">Logout</a>
+    <?php
+    } else {
+      ?>
+      <a class="menu" href="login.php">Login</a>
+      <a class="menu" href="signup.php">Criar conta</a>
+    <?php
+    }
+    ?>
+
   </nav>
   <header>
     <div class="text">

@@ -29,6 +29,10 @@
   margin-right: 40px;
 }
 
+nav .login{
+  margin: 0;
+}
+
 form label {
   display: inline-block;
   width: 150px;

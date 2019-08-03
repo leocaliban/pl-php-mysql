@@ -10,6 +10,10 @@
 </head>
 
 <body>
+    <nav>
+        <a class="menu" href="index.php">Início</a>
+        <a class="menu" href="login.php">Login</a>
+    </nav>
     <?php
     require_once('constants/app-vars.php');
     require_once('constants/connection-vars.php');
@@ -33,7 +37,7 @@
 
                 mysqli_query($dbc, $query_insert);
 
-                header('Location: editprofile.php'); 
+                header('Location: editprofile.php');
 
                 mysqli_close($dbc);
                 exit();
@@ -57,9 +61,7 @@
 
                 <div class="group">
                     <label for="username" class="float-input">
-                        <input type="text" id="username" name="username" value="<?php if (!empty($username)) {
-                                                                                    echo ($username);
-                                                                                } ?>" placeholder="&nbsp;">
+                        <input type="text" id="username" name="username" value="<?php if (!empty($username)) echo ($username); ?>" placeholder="&nbsp;">
                         <span class="label">Nome do usuário</span>
                         <span class="border"></span>
                     </label>

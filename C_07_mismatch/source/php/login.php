@@ -19,8 +19,8 @@ if (!isset($_COOKIE['id'])) {
             if (mysqli_num_rows($data) == 1) {
                 $row = mysqli_fetch_array($data);
 
-                setcookie('id', $row['id']);
-                setcookie('username', $row['username']);
+                setcookie('id', $row['id'], time() + (60 * 60 * 8));
+                setcookie('username', $row['username'], time() + (60 * 60 * 8));
                 // Redirecionar
                 $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/index.php';
                 header('Location: ' . $home_url);

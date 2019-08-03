@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<?php
-require_once('login.php');
-?>
 <html lang="pt-br">
 
 <head>
@@ -31,6 +28,8 @@ require_once('login.php');
         $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
             or die('Erro de conexão com MySQL server.');
 
+        $id = $_COOKIE['id'];
+        
         if (isset($_POST['submit'])) {
             $nome = mysqli_real_escape_string($dbc, trim($_POST['nome']));
             $sobrenome = mysqli_real_escape_string($dbc, trim($_POST['sobrenome']));
@@ -177,7 +176,7 @@ require_once('login.php');
                 <div class="group">
                     <input type="hidden" name="foto_antiga" value="<?php if (!empty($foto_antiga)) echo $foto_antiga; ?>" />
                     <label for="nova_foto" style="color: #747985">Foto de perfil</label>
-                    
+
                 </div>
                 <input type="file" id="nova_foto" name="nova_foto" />
                 <br />

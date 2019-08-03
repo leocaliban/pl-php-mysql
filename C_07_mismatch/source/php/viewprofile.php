@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<?php
-require_once('login.php');
-?>
 <html lang="pt-br">
 
 <head>
@@ -19,7 +16,7 @@ require_once('login.php');
   </nav>
 
   <section class="view-section">
-    <h2 class="view-title">Perfil do usuário</h2>
+    <h2 class="view-title">Perfil do Usuário</h2>
 
     <?php
     require_once('constants/app-vars.php');
@@ -29,6 +26,7 @@ require_once('login.php');
     $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
       or die('Erro de conexão com MySQL server.');
 
+    $id = $_COOKIE['id'];
     // Recuperar dados do BD
     if (!isset($_GET['id'])) {
       $query = "SELECT username, nome, sobrenome, genero, nascimento, cidade, estado, imagem FROM usuario WHERE id = '$id'";
@@ -85,7 +83,7 @@ require_once('login.php');
     mysqli_close($dbc);
     ?>
   </section>
-  
+
 </body>
 
 </html>

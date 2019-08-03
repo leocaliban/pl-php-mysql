@@ -52,6 +52,7 @@ gulp.task('watch', () => {
     gulp.watch('**/*.css', gulp.task('css'));
     gulp.watch('**/*.php', gulp.task('php'));
     gulp.watch('**/*.jpg', gulp.task('image'));
+    gulp.watch('**/*.png', gulp.task('image'));
 });
 
 

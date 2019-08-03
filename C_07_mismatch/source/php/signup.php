@@ -10,14 +10,6 @@
 </head>
 
 <body>
-
-    <header>
-        <div class="text">
-            <h2>Mismatch</h2>
-            <h3>Cadastro de usuário</h3>
-        </div>
-    </header>
-
     <?php
     require_once('constants/app-vars.php');
     require_once('constants/connection-vars.php');
@@ -41,7 +33,7 @@
 
                 mysqli_query($dbc, $query_insert);
 
-                echo '<p>Sua conta foi criada com sucesso! <a href="editprofile.php">Atualize seu perfil.</a></p>';
+                header('Location: editprofile.php'); 
 
                 mysqli_close($dbc);
                 exit();
@@ -57,24 +49,45 @@
     mysqli_close($dbc);
     ?>
 
-    <p>Por favor informe seu nome e senha para se cadastrar no Mismatch.</p>
-    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-        <fieldset>
-            <legend>Dados de login</legend>
-            <label for="username">Nome do usuário</label>
-            <input type="text" id="username" name="username" value="<?php if (!empty($username)) { echo ($username);} ?>" /> 
-            <br />
+    <div class="cadastro">
+        <div class="formulario">
+            <img class="icon" src="assets/images/conversa.png" alt="icon">
+            <h1 class="title">Cadastro Mismatch</h1>
+            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 
-            <label for="password1">Senha</label>
-            <input type="password" id="password1" name="password1" />
-            <br />
+                <div class="group">
+                    <label for="username" class="float-input">
+                        <input type="text" id="username" name="username" value="<?php if (!empty($username)) {
+                                                                                    echo ($username);
+                                                                                } ?>" placeholder="&nbsp;">
+                        <span class="label">Nome do usuário</span>
+                        <span class="border"></span>
+                    </label>
+                </div>
 
-            <label for="password2">Confirme a senha</label>
-            <input type="password" id="password2" name="password2" />
-            <br />
-        </fieldset>
-        <input type="submit" value="Cadastrar-se" name="submit" />
-    </form>
+                <div class="group">
+                    <label for="password1" class="float-input">
+                        <input type="password" id="password1" name="password1" placeholder="&nbsp;">
+                        <span class="label">Senha</span>
+                        <span class="border"></span>
+                    </label>
+                </div>
+
+                <div class="group">
+                    <label for="password2" class="float-input">
+                        <input type="password" id="password2" name="password2" placeholder="&nbsp;">
+                        <span class="label">Confirme a senha</span>
+                        <span class="border"></span>
+                    </label>
+                </div>
+                <div class="group">
+                    <input class="cadastro-button" type="submit" value="Cadastrar-se" name="submit" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+
 </body>
 
 </html>

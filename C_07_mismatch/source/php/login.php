@@ -1,10 +1,11 @@
 <?php
+session_start();
 require_once('constants/connection-vars.php');
 
 $mensagem_erro = "";
 $exibir_erro = false;
 
-if (!isset($_COOKIE['id'])) {
+if (!isset($_SESSION['id'])) {
     if (isset($_POST['submit'])) {
         $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
             or die('Erro de conexão com MySQL server.');
@@ -19,8 +20,8 @@ if (!isset($_COOKIE['id'])) {
             if (mysqli_num_rows($data) == 1) {
                 $row = mysqli_fetch_array($data);
 
-                setcookie('id', $row['id'], time() + (60 * 60 * 8));
-                setcookie('username', $row['username'], time() + (60 * 60 * 8));
+                $_SESSION['id'] = $row['id'];
+                $_SESSION['username'] = $row['username'];
                 // Redirecionar
                 $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/index.php';
                 header('Location: ' . $home_url);

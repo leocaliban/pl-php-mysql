@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -12,8 +15,8 @@
 <body>
   <nav>
     <?php
-    if (isset($_COOKIE['username'])) {
-      echo ('<p class="login">Bem vindo ' . $_COOKIE['username'] . '.</p>');
+    if (isset($_SESSION['username'])) {
+      echo ('<p class="login">Bem vindo ' . $_SESSION['username'] . '.</p>');
       ?>
       <a class="menu" href="viewprofile.php">Ver Perfil</a>
       <a class="menu" href="editprofile.php">Atualizar Perfil</a>
@@ -55,8 +58,17 @@
         echo '<div class="card">';
         if (is_file(MM_UPLOADPATH . $row['imagem']) && filesize(MM_UPLOADPATH . $row['imagem']) > 0) {
 
-          echo '<img src="' . MM_UPLOADPATH . $row['imagem'] . '" alt="' . $row['nome'] . '" />';
+          if (isset($_SESSION['id'])) {
+            echo '<a href="viewprofile.php?id=' . $row['id'] . '"><img src="' . MM_UPLOADPATH . $row['imagem'] . '" alt="' . $row['nome'] . '" /></a>';
+          } else {
+            echo '<img src="' . MM_UPLOADPATH . $row['imagem'] . '" alt="' . $row['nome'] . '" />';
+          }
         } else {
+          if (isset($_SESSION['id'])) {
+            echo '<a href="viewprofile.php?id=' . $row['id'] . '"><img src="' . MM_UPLOADPATH . 'not-image.jpg' . '" alt="' . $row['nome'] . '" /></a>';
+          } else {
+            echo '<img src="' . MM_UPLOADPATH . 'not-image.jpg' . '" alt="' . $row['nome'] . '" />';
+          }
           echo '<img src="' . MM_UPLOADPATH . 'not-image.jpg' . '" alt="' . $row['nome'] . '" />';
         }
 

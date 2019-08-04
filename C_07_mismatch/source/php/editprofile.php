@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -12,7 +15,20 @@
 <body>
     <nav>
         <a class="menu" href="index.php">Início</a>
-        <a class="menu" href="viewprofile.php">Ver Perfil</a>
+        <?php
+        if (isset($_SESSION['username'])) {
+            echo ('<p class="login">Bem vindo ' . $_SESSION['username'] . '.</p>');
+            ?>
+            <a class="menu" href="viewprofile.php">Ver Perfil</a>
+            <a class="menu" href="logout.php">Logout</a>
+        <?php
+        } else {
+            ?>
+            <a class="menu" href="login.php">Login</a>
+            <a class="menu" href="signup.php">Criar conta</a>
+        <?php
+        }
+        ?>
     </nav>
     <section class="view-section">
         <h2 class="view-title">Atualizar Perfil</h2>
@@ -23,13 +39,17 @@
         require_once('constants/app-vars.php');
         require_once('constants/connection-vars.php');
 
+        if (!isset($_SESSION['id'])) {
+            echo '<p class="error">Por favor, realize o <a href="login.php">LOGIN</a> para acessar essa página.</p>';
+            exit();
+        }
 
         // Conexão com BD
         $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
             or die('Erro de conexão com MySQL server.');
 
-        $id = $_COOKIE['id'];
-        
+        $id = $_SESSION['id'];
+
         if (isset($_POST['submit'])) {
             $nome = mysqli_real_escape_string($dbc, trim($_POST['nome']));
             $sobrenome = mysqli_real_escape_string($dbc, trim($_POST['sobrenome']));

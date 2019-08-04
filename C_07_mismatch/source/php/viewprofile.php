@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -12,21 +15,38 @@
 <body>
   <nav>
     <a class="menu" href="index.php">Início</a>
-    <a class="menu" href="editprofile.php">Atualizar Perfil</a>
+        <?php
+        if (isset($_SESSION['username'])) {
+            echo ('<p class="login">Bem vindo ' . $_SESSION['username'] . '.</p>');
+            ?>
+            <a class="menu" href="editprofile.php">Atualizar Perfil</a>
+            <a class="menu" href="logout.php">Logout</a>
+        <?php
+        } else {
+            ?>
+            <a class="menu" href="login.php">Login</a>
+            <a class="menu" href="signup.php">Criar conta</a>
+        <?php
+        }
+        ?>
   </nav>
 
-  <section class="view-section">
+  <section class="view-section" id="view">
     <h2 class="view-title">Perfil do Usuário</h2>
 
     <?php
     require_once('constants/app-vars.php');
     require_once('constants/connection-vars.php');
 
+    if (!isset($_SESSION['id'])) {
+      echo '<p class="error">Por favor, realize o <a href="login.php">LOGIN</a> para acessar essa página.</p>';
+      exit();
+  }
     // Conexão com BD
     $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
       or die('Erro de conexão com MySQL server.');
 
-    $id = $_COOKIE['id'];
+    $id = $_SESSION['id'];
     // Recuperar dados do BD
     if (!isset($_GET['id'])) {
       $query = "SELECT username, nome, sobrenome, genero, nascimento, cidade, estado, imagem FROM usuario WHERE id = '$id'";
@@ -38,10 +58,10 @@
 
     if (mysqli_num_rows($data) == 1) {
       $row = mysqli_fetch_array($data);
-
+      echo '<div style="display:flex;flex-wrap: wrap;">';
       echo '<img class="view-image" src="' . MM_UPLOADPATH . $row['imagem'] . '" alt="Foto de perfil" />';
 
-      echo '<table>';
+      echo '<table style="align-self:center; margin-left:20px;">';
       if (!empty($row['username'])) {
         echo '<tr><td class="label">Nome do usuário:</td><td>' . $row['username'] . '</td></tr>';
       }
@@ -76,6 +96,7 @@
         echo '<tr><td class="label">Endereço:</td><td>' . $row['cidade'] . ', ' . $row['estado'] . '</td></tr>';
       }
       echo '</table>';
+      echo '</div>';
     } else {
       echo '<p class="error">Ocorreu um problema ao acessar seu perfil.</p>';
     }

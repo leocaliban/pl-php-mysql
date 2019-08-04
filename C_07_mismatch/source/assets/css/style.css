@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister&display=swap");
 
-*{
+* {
   box-sizing: border-box;
 }
 .error {
@@ -29,7 +29,7 @@
   margin-right: 40px;
 }
 
-nav .login{
+nav .login {
   margin: 0;
 }
 
@@ -92,7 +92,7 @@ section h2 {
   padding: 0;
 }
 
-section h2{
+section h2 {
   color: #223254;
 }
 
@@ -117,7 +117,7 @@ section h2 {
 main {
   display: grid;
   grid-gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(233px, 1fr));
   margin: 40px;
 }
 
@@ -128,15 +128,24 @@ main {
   display: flex;
   flex-direction: column;
   text-align: center;
-  border: 1px solid #796B8C;
-  box-shadow:0px 0px 3px #333333;
+  border: 1px solid #796b8c;
+  box-shadow: 0px 0px 3px #333333;
+}
+
+.card a {
+  border-radius: 50%;
   
 }
 
 .card img {
   border-radius: 50%;
   border: 5px solid #eeeeee;
-  box-shadow:0px 0px 4px #333333;
+  box-shadow: 0px 0px 4px #333333;
+  transition: ease-in-out 0.3s;
+}
+
+.card img:hover {
+  border: 5px solid #ac1798;
 }
 
 .card-name,
@@ -160,7 +169,6 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  
 }
 
 .cadastro .formulario {
@@ -168,7 +176,7 @@ main {
   border-radius: 10px;
   position: relative;
   width: 400px;
-  box-shadow:0px 0px 16px #333333;
+  box-shadow: 0px 0px 16px #333333;
 }
 
 .icon {
@@ -186,7 +194,7 @@ main {
   margin-bottom: 10px;
 }
 
-.group{
+.group {
   display: flex;
 }
 
@@ -197,8 +205,8 @@ main {
   max-width: 280px;
 }
 
-fieldset .float-input{
-  margin: 10px 0;
+fieldset .float-input {
+  margin: 10px auto;
 }
 
 .float-input .label {
@@ -250,7 +258,6 @@ fieldset .float-input{
   background: rgba(#223254, 0.03);
 }
 
-
 .float-input input:not(:placeholder-shown) + span {
   color: #5a667f;
   transform: translateY(-26px) scale(0.75);
@@ -263,14 +270,14 @@ fieldset .float-input{
 
 .float-input input:focus + span {
   color: #ac1798;
-  transform: translateY(-26px) scale(.75);
+  transform: translateY(-26px) scale(0.75);
 }
 
 .float-input input:focus + span + .border {
   transform: scaleX(1);
 }
 
-.cadastro-button{
+.cadastro-button {
   background-color: #ac1798;
   border: 0;
   font-family: inherit;
@@ -282,26 +289,35 @@ fieldset .float-input{
   cursor: pointer;
 }
 
-fieldset .cadastro-button{
-  margin: 15px 0;
+fieldset .cadastro-button {
+  margin: 15px auto;
 }
 
-.cadastro-button:hover{
+fieldset {
+  max-width: 350px;
+  background-color: #fff;
+}
+
+.cadastro-button:hover {
   background-color: #700f63;
 }
 
-.cadastro-button:focus{
-  box-shadow:0px 0px 6px #700f63;
+.cadastro-button:focus {
+  box-shadow: 0px 0px 6px #700f63;
 }
 
-.view-section{
+#view{
+  background-color: #fff;
+}
+
+.view-section {
   border-top: 2px solid #727070;
   border-bottom: 2px solid #727070;
-  background-color: #efeeec; 
+  background-color: #efeeec;
   padding: 20px 40px 20px 40px;
 }
 
-.view-title{
+.view-title {
   text-align: left;
   color: #223254;
   font-size: 1.5em;
@@ -309,14 +325,20 @@ fieldset .cadastro-button{
   letter-spacing: 0.1em;
 }
 
-.view-image{
+.view-image {
   border-radius: 50%;
-  box-shadow:0px 0px 16px #333333;
+  box-shadow: 0px 0px 16px #333333;
+}
+
+fieldset .view-image {
+  border-radius: 10px;
+  display: block;
+  margin: 15px auto;
 }
 
 .footer {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background-color: #1F212D;
+  background-color: #1f212d;
   color: #fff;
   padding: 8px;
   text-align: center;

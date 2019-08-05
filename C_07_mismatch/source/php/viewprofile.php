@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['id'])) {
+  if (isset($_COOKIE['id']) && isset($_COOKIE['username'])) {
+    $_SESSION['id'] = $_COOKIE['id'];
+    $_SESSION['username'] = $_COOKIE['username'];
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -15,20 +22,20 @@ session_start();
 <body>
   <nav>
     <a class="menu" href="index.php">Início</a>
-        <?php
-        if (isset($_SESSION['username'])) {
-            echo ('<p class="login">Bem vindo ' . $_SESSION['username'] . '.</p>');
-            ?>
-            <a class="menu" href="editprofile.php">Atualizar Perfil</a>
-            <a class="menu" href="logout.php">Logout</a>
-        <?php
-        } else {
-            ?>
-            <a class="menu" href="login.php">Login</a>
-            <a class="menu" href="signup.php">Criar conta</a>
-        <?php
-        }
-        ?>
+    <?php
+    if (isset($_SESSION['username'])) {
+      echo ('<p class="login">Bem vindo ' . $_SESSION['username'] . '.</p>');
+      ?>
+      <a class="menu" href="editprofile.php">Atualizar Perfil</a>
+      <a class="menu" href="logout.php">Logout</a>
+    <?php
+    } else {
+      ?>
+      <a class="menu" href="login.php">Login</a>
+      <a class="menu" href="signup.php">Criar conta</a>
+    <?php
+    }
+    ?>
   </nav>
 
   <section class="view-section" id="view">
@@ -41,7 +48,7 @@ session_start();
     if (!isset($_SESSION['id'])) {
       echo '<p class="error">Por favor, realize o <a href="login.php">LOGIN</a> para acessar essa página.</p>';
       exit();
-  }
+    }
     // Conexão com BD
     $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
       or die('Erro de conexão com MySQL server.');

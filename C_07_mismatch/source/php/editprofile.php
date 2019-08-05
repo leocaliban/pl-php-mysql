@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['id'])) {
+    if (isset($_COOKIE['id']) && isset($_COOKIE['username'])) {
+        $_SESSION['id'] = $_COOKIE['id'];
+        $_SESSION['username'] = $_COOKIE['username'];
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -64,13 +71,13 @@ session_start();
             $tipo_nova_foto = $_FILES['nova_foto']['type'];
             $tamanho_nova_foto = $_FILES['nova_foto']['size'];
 
-            // list($nova_foto_width, $nova_foto_height) = getimagesize($_FILES['nova_foto']['tmp_name']);
+            list($nova_foto_width, $nova_foto_height) = getimagesize($_FILES['nova_foto']['tmp_name']);
             $error = false;
 
             if (!empty($nova_foto)) {
                 if ((($tipo_nova_foto == 'image/gif') || ($tipo_nova_foto == 'image/jpeg') || ($tipo_nova_foto == 'image/pjpeg') || ($tipo_nova_foto == 'image/png')) && ($tamanho_nova_foto > 0) && ($tamanho_nova_foto <= MM_MAX_FILE_SIZE) && ($nova_foto_width <= MM_MAX_IMG_WIDTH) && ($nova_foto_height <= MM_MAX_IMG_HEIGHT)
                 ) {
-                    if ($_FILES['file']['error'] == 0) {
+                    if ($_FILES['nova_foto']['error'] == 0) {
                         $target = MM_UPLOADPATH . basename($nova_foto);
 
                         if (move_uploaded_file($_FILES['nova_foto']['tmp_name'], $target)) {

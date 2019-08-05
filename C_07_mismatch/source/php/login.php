@@ -22,6 +22,10 @@ if (!isset($_SESSION['id'])) {
 
                 $_SESSION['id'] = $row['id'];
                 $_SESSION['username'] = $row['username'];
+
+                setcookie('id', $row['id'], time() + (60 * 60 * 24 * 30));
+                setcookie('username', $row['username'], time() + (60 * 60 * 24 * 30));
+
                 // Redirecionar
                 $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/index.php';
                 header('Location: ' . $home_url);

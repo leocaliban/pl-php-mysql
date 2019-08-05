@@ -9,6 +9,8 @@ if (isset($_SESSION['id'])) {
 
 if (isset($_COOKIE[session_name()])) {
     setcookie(session_name(), '', time() - 3600);
+    setcookie('id', '', time() - 3600);
+    setcookie('username', '', time() - 3600);
 }
 
 session_destroy();

@@ -39,65 +39,56 @@ if (!isset($_SESSION['id'])) {
         }
     }
 }
+
+$page_title = 'Login';
+require_once('templates/header.php');
 ?>
 
-<html lang="pt-br">
+<nav>
+    <a class="menu" href="index.php">Início</a>
+    <a class="menu" href="signup.php">Criar conta</a>
+</nav>
+<?php
+if (empty($_COOKIE['id'])) {
+    if ($exibir_erro == true) {
 
-<head>
-    <meta charset="utf-8" />
-    <title>Mismatch - Login</title>
-    <meta name="description" content="Mismatch - Login" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.min.css" />
-</head>
-
-<body>
-    <nav>
-        <a class="menu" href="index.php">Início</a>
-        <a class="menu" href="signup.php">Criar conta</a>
-    </nav>
-    <?php
-    if (empty($_COOKIE['id'])) {
-        if ($exibir_erro == true) {
-
-            echo '<p class="error">' . $mensagem_erro . '</p>';
-        }
-        ?>
-
-        <div class="cadastro">
-            <div class="formulario">
-                <img class="icon" src="assets/images/conversa.png" alt="icon">
-                <h1 class="title">Login Mismatch</h1>
-                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                    <div class="group">
-                        <label for="username" class="float-input">
-                            <input type="text" id="username" name="username" value="<?php if (!empty($username)) echo ($username); ?>" placeholder="&nbsp;">
-                            <span class="label">Nome do usuário</span>
-                            <span class="border"></span>
-                        </label>
-                    </div>
-
-                    <div class="group">
-                        <label for="password" class="float-input">
-                            <input type="password" id="password" name="password" placeholder="&nbsp;">
-                            <span class="label">Senha</span>
-                            <span class="border"></span>
-                        </label>
-                    </div>
-
-                    <div class="group">
-                        <input class="cadastro-button" type="submit" value="Entrar" name="submit" />
-                    </div>
-                </form>
-            </div>
-        </div>
-
-    <?php
-    } else {
-        echo ('<p class="login">Você já está logado como ' . $_COOKIE['username'] . '!</p>');
+        echo '<p class="error">' . $mensagem_erro . '</p>';
     }
     ?>
-    <footer class="footer">DESIGNED BY <strong>Leocaliban</strong> &copy; 2019</footer>
-</body>
 
-</html>
+    <div class="cadastro">
+        <div class="formulario">
+            <img class="icon" src="assets/images/conversa.png" alt="icon">
+            <h1 class="title">Login Mismatch</h1>
+            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                <div class="group">
+                    <label for="username" class="float-input">
+                        <input type="text" id="username" name="username" value="<?php if (!empty($username)) echo ($username); ?>" placeholder="&nbsp;">
+                        <span class="label">Nome do usuário</span>
+                        <span class="border"></span>
+                    </label>
+                </div>
+
+                <div class="group">
+                    <label for="password" class="float-input">
+                        <input type="password" id="password" name="password" placeholder="&nbsp;">
+                        <span class="label">Senha</span>
+                        <span class="border"></span>
+                    </label>
+                </div>
+
+                <div class="group">
+                    <input class="cadastro-button" type="submit" value="Entrar" name="submit" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+<?php
+} else {
+    echo ('<p class="login">Você já está logado como ' . $_COOKIE['username'] . '!</p>');
+}
+?>
+<?php
+require_once('templates/footer.php');
+?>

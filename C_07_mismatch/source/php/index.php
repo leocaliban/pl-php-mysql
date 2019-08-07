@@ -12,6 +12,7 @@ require_once('templates/header.php');
     ?>
     <a class="menu" href="viewprofile.php">Ver Perfil</a>
     <a class="menu" href="editprofile.php">Atualizar Perfil</a>
+    <a class="menu" href="questionnaire.php">Questionário</a>
     <a class="menu" href="logout.php">Logout</a>
   <?php
   } else {
@@ -41,7 +42,7 @@ require_once('templates/header.php');
       or die('Erro de conexão com MySQL server.');
 
     // Recuperar dados do BD
-    $query = "SELECT id, nome, cidade, estado, imagem FROM usuario WHERE nome IS NOT NULL ORDER BY data_cadastro DESC LIMIT 10";
+    $query = "SELECT id, nome, cidade, estado, imagem FROM usuario WHERE nome IS NOT NULL ORDER BY data_cadastro DESC LIMIT 15";
 
     $data = mysqli_query($dbc, $query);
 
@@ -57,11 +58,10 @@ require_once('templates/header.php');
         }
       } else {
         if (isset($_SESSION['id'])) {
-          echo '<a href="viewprofile.php?id=' . $row['id'] . '"><img src="' . MM_UPLOADPATH . 'not-image.jpg' . '" alt="' . $row['nome'] . '" /></a>';
+          echo '<a href="viewprofile.php?id=' . $row['id'] . '"><img src="' . MM_UPLOADPATH . 'not-image.png' . '" alt="' . $row['nome'] . '" /></a>';
         } else {
-          echo '<img src="' . MM_UPLOADPATH . 'not-image.jpg' . '" alt="' . $row['nome'] . '" />';
+          echo '<img src="' . MM_UPLOADPATH . 'not-image.png' . '" alt="' . $row['nome'] . '" />';
         }
-        echo '<img src="' . MM_UPLOADPATH . 'not-image.jpg' . '" alt="' . $row['nome'] . '" />';
       }
 
       echo '<div class="card-name">' . $row['nome'] . '</div>';

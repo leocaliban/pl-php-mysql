@@ -73,14 +73,21 @@ require_once('templates/header.php');
     $respostas = array();
 
     while ($row = mysqli_fetch_array($data)) {
-        $query2 = "SELECT nome, categoria FROM topico WHERE id = '" . $row['id_topico'] . "'";
+        $query2 = "SELECT nome, id_categoria FROM topico WHERE id = '" . $row['id_topico'] . "'";
         $data2 = mysqli_query($dbc, $query2);
 
         if (mysqli_num_rows($data2) == 1) {
             $row2 = mysqli_fetch_array($data2);
             $row['topico'] = $row2['nome'];
-            $row['categoria'] = $row2['categoria'];
-            array_push($respostas, $row);
+
+            $query3 = "SELECT nome FROM categoria WHERE id = '" . $row2['id_categoria'] . "'";
+            $data3 = mysqli_query($dbc, $query3);
+
+            if (mysqli_num_rows($data3) == 1) {
+                $row3 = mysqli_fetch_array($data3);
+                $row['categoria'] = $row3['nome'];
+                array_push($respostas, $row);
+            }
         }
     }
     mysqli_close($dbc);

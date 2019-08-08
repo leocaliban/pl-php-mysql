@@ -8,12 +8,12 @@ require_once('templates/header.php');
 <nav class="nav">
   <div class="nav__container">
     <div class="nav__container__logo">
-    <p class="nav__container__logo__name">M</p> 
+      <p class="nav__container__logo__name">M</p>
       <a href="index.php">
         <img class="nav__container__logo__image" src="assets/images/mm.png" alt="Mismatch logo">
       </a>
-      <p class="nav__container__logo__name">M</p> 
-      <?php 
+      <p class="nav__container__logo__name">M</p>
+      <?php
       if (isset($_SESSION['username'])) {
         echo ('<p class="nav__container__user"> - Olá, ' . $_SESSION['username'] . '.</p>');
       }
@@ -33,8 +33,6 @@ require_once('templates/header.php');
         </li>
         <?php
         if (isset($_SESSION['username'])) {
-          // TODO: Identificar usuario logado
-          // echo ('<p class="login">Bem vindo ' . $_SESSION['username'] . '.</p>');
           ?>
           <li class="nav__menu__item">
             <a class="nav__menu__item__button" href="viewprofile.php">Ver Perfil</a>

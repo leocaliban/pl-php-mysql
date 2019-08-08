@@ -43,10 +43,32 @@ if (!isset($_SESSION['id'])) {
 $page_title = 'Login';
 require_once('templates/header.php');
 ?>
+<nav class="nav">
+    <div class="nav__container">
+        <div class="nav__container__logo">
+            <p class="nav__container__logo__name">M</p>
+            <a href="index.php">
+                <img class="nav__container__logo__image" src="assets/images/mm.png" alt="Mismatch logo">
+            </a>
+            <p class="nav__container__logo__name">M</p>
+        </div>
+        <div class="nav__menu">
+            <div class="nav__menu__mini">
+                <div class="nav__menu__mini__row"> </div>
+                <div class="nav__menu__mini__row"> </div>
+                <div class="nav__menu__mini__row"> </div>
+            </div>
+            <ul>
+                <li class="nav__menu__item">
+                    <a class="nav__menu__item__button" href="index.php">Início</a>
+                </li>
 
-<nav>
-    <a class="menu" href="index.php">Início</a>
-    <a class="menu" href="signup.php">Criar conta</a>
+                <li class="nav__menu__item">
+                    <a class="nav__menu__item__button" href="signup.php">Criar conta</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>
 <?php
 if (empty($_COOKIE['id'])) {

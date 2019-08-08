@@ -3,6 +3,21 @@
 * {
   box-sizing: border-box;
 }
+
+html,
+body {
+  height: 100%;
+}
+nav ul,
+nav li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.master-container {
+  min-height: 100%;
+  position: relative;
+}
 .error {
   height: 40px;
   line-height: 40px;
@@ -27,6 +42,97 @@
   margin: 0;
   float: right;
   margin-right: 40px;
+}
+
+.nav {
+  background-color: #efeeec;
+  height: 80px;
+  padding: 0 5px;
+  position: sticky;
+    top: 0;
+}
+
+.nav__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav__container__logo {
+  display: flex;
+  align-items: center;
+  height: 80px;
+}
+
+.nav__container__logo__name{
+  font-size: 2.5em;
+  color: #921381;
+  margin: 0;
+}
+
+.nav__container__user{
+  font-size: 1em;
+  color: #921381;
+  margin: 0 0 0 15px;
+}
+
+.nav__container__logo__image {
+  height: 70px;
+}
+
+.nav__menu {
+  display: flex;
+  align-items: center;
+}
+
+.nav__menu ul {
+  flex-direction: column;
+  display: none;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background-color: #efeeec;
+  margin-top: 95px;
+}
+
+.nav__menu__item__button {
+  text-transform: uppercase;
+  display: block;
+  font-size: 1.1em;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  color: #efeeec;
+  background-color: #ac1798;
+  border: 1px solid transparent;
+  padding: 8px 15px;
+  box-shadow: 0px 0px 4px #333333;
+  text-align: center;
+}
+
+.nav__menu__mini {
+  width: 40px;
+  height: 40px;
+  margin: 20px 20px 20px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.nav__menu__mini__row {
+  height: 3px;
+  background-color: #ac1798;
+}
+
+.nav__menu__item__button:focus {
+  background-color: rgb(117, 16, 104);
+  color: #efeeec;
+  box-shadow: 0px 0px 8px #333333;
+}
+
+.nav__menu__item__button:hover {
+  color: #ac1798;
+  border: 1px solid #ac1798;
+  background-color: #efeeec;
+  box-shadow: 0px 0px 8px #333333;
 }
 
 nav .login {
@@ -54,35 +160,17 @@ body {
   padding: 0;
 }
 
-nav {
-  height: 40px;
-  background-color: #efeeec;
-  padding: 0 40px;
-}
-
-nav .menu {
-  display: inline-block;
-  text-decoration: none;
-  color: #efeeec;
-  background-color: #ac1798;
-  padding: 5px 12px;
-  margin-top: 5px;
-  border-radius: 15px;
-}
-
-nav .menu:hover {
-  background-color: rgb(117, 16, 104);
-}
-
 header {
-  height: 500px;
+  height: 400px;
   background: linear-gradient(to bottom, rgba(0, 0, 255, 0.13), #363749), url("../images/digital-love.jpg");
   background-attachment: fixed;
   background-position: left center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-
+section {
+  padding-bottom: 30px;
+}
 header h2,
 header h3,
 section h2 {
@@ -105,11 +193,11 @@ header h3 {
 }
 
 .text {
-  padding-top: 180px;
+  padding-top: 100px;
 }
 
 section h2 {
-  font-size: 2em;
+  font-size: 2.5em;
   padding: 30px 0 5px 0;
   letter-spacing: 0.5em;
 }
@@ -118,7 +206,7 @@ main {
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(233px, 1fr));
-  margin: 40px;
+  margin: 20px;
 }
 
 .card {
@@ -134,7 +222,6 @@ main {
 
 .card a {
   border-radius: 50%;
-  
 }
 
 .card img {
@@ -306,7 +393,7 @@ fieldset {
   box-shadow: 0px 0px 6px #700f63;
 }
 
-#view{
+#view {
   background-color: #fff;
 }
 
@@ -342,5 +429,56 @@ fieldset .view-image {
   color: #fff;
   padding: 8px;
   text-align: center;
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+@media screen and (min-width: 56.25em) {
+  .nav {
+    padding: 0 100px;
+  }
+  .nav__container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .nav__menu ul {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    width: auto;
+    position: inherit;
+  }
+
+  .nav__container__logo__name{
+    font-size: 3.5em;
+  }
+  
+  .nav__container__user{
+    font-size: 1.5em;
+    margin: 0 0 0 25px;
+  }
+
+  .nav__menu__mini {
+    display: none;
+  }
+  .nav__menu__item {
+    margin-right: 10px;
+  }
+  .nav__menu__item__button {
+    border-radius: 20px;
+  }
+
+  .text {
+    padding-top: 180px;
+  }
+
+  header {
+    height: 500px;
+  }
+
+  main{
+    margin: 50px 100px;
+  }
 }

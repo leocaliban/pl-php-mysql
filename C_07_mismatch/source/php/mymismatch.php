@@ -6,25 +6,62 @@ require_once('templates/header.php');
 
 ?>
 
-<nav>
-    <a class="menu" href="index.php">Início</a>
-    <?php
-    if (isset($_SESSION['username'])) {
-        echo ('<p class="login">Bem vindo ' . $_SESSION['username'] . '.</p>');
-        ?>
-        <a class="menu" href="viewprofile.php">Ver Perfil</a>
-        <a class="menu" href="editprofile.php">Atualizar Perfil</a>
-        <a class="menu" href="questionnaire.php">Questionário</a>
-        <a class="menu" href="mymismatch.php">Meu Desencontro</a>
-        <a class="menu" href="logout.php">Logout</a>
-    <?php
-    } else {
-        ?>
-        <a class="menu" href="login.php">Login</a>
-        <a class="menu" href="signup.php">Criar conta</a>
-    <?php
-    }
-    ?>
+<nav class="nav">
+    <div class="nav__container">
+        <div class="nav__container__logo">
+            <p class="nav__container__logo__name">M</p>
+            <a href="index.php">
+                <img class="nav__container__logo__image" src="assets/images/mm.png" alt="Mismatch logo">
+            </a>
+            <p class="nav__container__logo__name">M</p>
+            <?php
+            if (isset($_SESSION['username'])) {
+                echo ('<p class="nav__container__user"> - Olá, ' . $_SESSION['username'] . '.</p>');
+            }
+            ?>
+        </div>
+        <div class="nav__menu t">
+
+            <div class="nav__menu__mini">
+                <div class="nav__menu__mini__row"> </div>
+                <div class="nav__menu__mini__row"> </div>
+                <div class="nav__menu__mini__row"> </div>
+            </div>
+
+            <ul>
+                <li class="nav__menu__item">
+                    <a class="nav__menu__item__button" href="index.php">Início</a>
+                </li>
+                <?php
+                if (isset($_SESSION['username'])) {
+                    ?>
+                    <li class="nav__menu__item">
+                        <a class="nav__menu__item__button" href="viewprofile.php">Perfil</a>
+                    </li>
+                    <li class="nav__menu__item">
+                        <a class="nav__menu__item__button" href="editprofile.php">Alterar</a>
+                    </li>
+                    <li class="nav__menu__item">
+                        <a class="nav__menu__item__button" href="questionnaire.php">Tópicos</a>
+                    </li>
+                    <li class="nav__menu__item">
+                        <a class="nav__menu__item__button" href="logout.php">Logout</a>
+                    </li>
+                <?php
+                } else {
+                    ?>
+                    <li class="nav__menu__item">
+                        <a class="nav__menu__item__button" href="login.php">Login</a>
+                    </li>
+                    <li class="nav__menu__item">
+                        <a class="nav__menu__item__button" href="signup.php">Criar conta</a>
+                    </li>
+                <?php
+                }
+                ?>
+            </ul>
+        </div>
+    </div>
 </nav>
 
 <section class="view-section" id="view">

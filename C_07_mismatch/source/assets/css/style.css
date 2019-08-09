@@ -58,7 +58,7 @@ nav li {
 .nav {
   z-index: 99999;
   background-color: #efeeec;
-  height: 70px;
+  height: 80px;
   padding: 0 5px;
   position: sticky;
   top: 0;
@@ -263,7 +263,7 @@ main {
 }
 
 .cadastro {
-  height:100%;
+  height:100vh;
   background: linear-gradient(to bottom, rgba(0, 0, 255, 0.13), #be8eb6cb), url("../images/digital-love.jpg");
   background-attachment: fixed;
   background-position: left center;
@@ -529,7 +529,7 @@ fieldset {
   transition: all 0.2s ease-in-out;
   text-decoration: none;
   color: #fff;
-  background-color: #17ac17;
+  background-color: #ac1798;
   border: 1px solid transparent;
   padding: 8px 15px;
   box-shadow: 0px 0px 4px #333333;
@@ -543,15 +543,15 @@ fieldset {
 }
 
 .save-button:focus {
-  background-color: #127c12;
+  background-color: #550a4b;
   color: #fff;
   box-shadow: 0px 0px 8px #333333;
 }
 
 .save-button:hover {
   color: #fff;
-  border: 1px solid #0e630e;
-  background-color: #0e630e;
+  border: 1px solid #700f63;
+  background-color: #700f63;
   box-shadow: 0px 0px 8px #333333;
 }
 
@@ -643,7 +643,6 @@ fieldset .view-image {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 50px;
 }
 
 @media screen and (min-width: 56.25em) {

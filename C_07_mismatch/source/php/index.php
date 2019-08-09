@@ -53,8 +53,6 @@ require_once('templates/header.php');
         }
         ?>
       </ul>
-
-
     </div>
   </div>
 </nav>

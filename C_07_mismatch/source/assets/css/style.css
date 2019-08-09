@@ -30,6 +30,17 @@ nav li {
   border: 2px solid #cc4c56;
 }
 
+.success {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  letter-spacing: 0.2em;
+  color: #525252;
+  background-color: #81ff81;
+  margin: 0;
+  border: 2px solid #4ccc57;
+}
+
 .login {
   font-style: italic;
   height: 40px;
@@ -45,8 +56,9 @@ nav li {
 }
 
 .nav {
+  z-index: 99999;
   background-color: #efeeec;
-  height: 10vh;
+  height: 70px;
   padding: 0 5px;
   position: sticky;
   top: 0;
@@ -92,6 +104,10 @@ nav li {
   width: 100%;
   background-color: #efeeec;
   margin-top: 95px;
+}
+
+.t ul {
+  margin-top: 155px;
 }
 
 .nav__menu__item__button {
@@ -247,7 +263,7 @@ main {
 }
 
 .cadastro {
-  height: 85vh;
+  height:100%;
   background: linear-gradient(to bottom, rgba(0, 0, 255, 0.13), #be8eb6cb), url("../images/digital-love.jpg");
   background-attachment: fixed;
   background-position: left center;
@@ -257,6 +273,7 @@ main {
   align-items: center;
   justify-content: center;
 }
+
 
 .cadastro .formulario {
   background-color: #fff;
@@ -364,6 +381,60 @@ fieldset .float-input {
   transform: scaleX(1);
 }
 
+.radio-group {
+  padding: 10px;
+}
+
+.select-box select {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  height: 29px;
+  padding: 5px; /* If you add too much padding here, the options won't show in IE */
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  width: 100%;
+  background-color: #ac3c9d;
+  color: #fff;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.file-group {
+  font-family: inherit;
+  margin: 10px 20px;
+  max-width: 300px;
+  background-color: #ededed;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.file-info {
+  font-size: 0.9em;
+}
+
+.file-button {
+  font-family: inherit;
+  background: #ac3c9d;
+  color: #fff;
+  min-height: 35px;
+  padding: 10px;
+  border: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  cursor: pointer;
+}
+
+.file-button:hover,
+.select-box select:hover {
+  background: #812d76;
+}
+
 .cadastro-button {
   background-color: #ac1798;
   border: 0;
@@ -383,6 +454,8 @@ fieldset .cadastro-button {
 fieldset {
   max-width: 350px;
   background-color: #fff;
+  padding-bottom: 15px;
+  margin-bottom: 50px;
 }
 
 .cadastro-button:hover {
@@ -393,17 +466,155 @@ fieldset {
   box-shadow: 0px 0px 6px #700f63;
 }
 
-#view {
+#view{
   background-color: #fff;
 }
 
+.section {
+  margin-top: 10px;
+  padding: 10px 10px;
+  background-color: #1f212d;
+}
+
+.section__tittle {
+  color: #efeeec;
+  text-align: center;
+  font-size: 2.5em;
+  padding: 15px 0 5px 0;
+  letter-spacing: 0.1em;
+}
+
+.section__subtitle {
+  color: #efeeec;
+  text-align: center;
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.section__topicos {
+  margin-top: 30px;
+  display: grid;
+  grid-gap: 50px 20px;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+}
+
+.section__topicos__grupo{
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  box-shadow: 0px 0px 16px #333333;
+}
+
+.section__topicos__grupo__icone{
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 70px;
+  height: 70px;
+}
+
+.section__topicos__grupo__titulo{
+  color: #700f63;
+  font-size: 1.8em;
+}
+
+.save-button{
+  margin: 20px 0 0 0;
+  text-transform: uppercase;
+  display: block;
+  font-size: 1.1em;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  color: #fff;
+  background-color: #17ac17;
+  border: 1px solid transparent;
+  padding: 8px 15px;
+  box-shadow: 0px 0px 4px #333333;
+  text-align: center;
+  width: 100%;
+  border-radius: 15px;
+  font-weight: bold;
+  font-family: inherit;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+}
+
+.save-button:focus {
+  background-color: #127c12;
+  color: #fff;
+  box-shadow: 0px 0px 8px #333333;
+}
+
+.save-button:hover {
+  color: #fff;
+  border: 1px solid #0e630e;
+  background-color: #0e630e;
+  box-shadow: 0px 0px 8px #333333;
+}
+
+.rating-container {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	padding: 0.4rem 0;
+  width: 100%;
+  align-items: center;
+}
+
+.rating-label{
+  font-size:1.2em;
+}
+.rating {
+	background-color: rgba(0, 0, 16, 0.8);
+	padding: 0.4rem 0.4rem 0.1rem 0.4rem;
+	border-radius: 2.2rem;
+}
+
+.rating label{
+  position:relative;
+  width:40px;
+}
+
 .view-section {
+  margin-top: 5px;
   border-top: 2px solid #727070;
   border-bottom: 2px solid #727070;
   background-color: #efeeec;
-  padding: 20px 40px 20px 40px;
+  padding: 20px 10px 20px 10px;
 }
-
+svg {
+  fill: rgb(242, 242, 242);
+	height: 1.5rem;
+	width: 2rem;
+	margin: 0.2rem;
+}
+input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+}
+input[type="radio"] + svg {
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
+}
+input + svg {
+	cursor: pointer;
+}
+input[class="super-happy"]:hover + svg,
+input[class="super-happy"]:checked + svg,
+input[class="super-happy"]:focus + svg {
+	fill: rgb(0, 109, 217);
+}
+input[class="super-sad"]:hover + svg,
+input[class="super-sad"]:checked + svg,
+input[class="super-sad"]:focus + svg {
+	fill: rgb(239, 42, 16);
+}
 .view-title {
   text-align: left;
   color: #223254;
@@ -425,14 +636,14 @@ fieldset .view-image {
 
 .footer {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background-color: #1f212d;
+  background-color: #0b0b0e;
   color: #fff;
   padding: 8px;
   text-align: center;
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 5vh;
+  height: 50px;
 }
 
 @media screen and (min-width: 56.25em) {
@@ -481,5 +692,22 @@ fieldset .view-image {
 
   main {
     margin: 50px 100px;
+  }
+
+  .view-section {
+    padding: 20px 40px 20px 40px;
+  }
+
+  .section {
+    padding: 0 100px;
+  }
+
+  .radio-group {
+    padding: 10px 20px;
+  }
+  .save-button{
+
+    width: 330px;
+
   }
 }

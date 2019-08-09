@@ -4,22 +4,62 @@ require_once('templates/startsession.php');
 $page_title = 'Editar Perfil';
 require_once('templates/header.php');
 ?>
-<nav>
-    <a class="menu" href="index.php">Início</a>
-    <?php
-    if (isset($_SESSION['username'])) {
-        echo ('<p class="login">Bem vindo ' . $_SESSION['username'] . '.</p>');
-        ?>
-        <a class="menu" href="viewprofile.php">Ver Perfil</a>
-        <a class="menu" href="logout.php">Logout</a>
-    <?php
-    } else {
-        ?>
-        <a class="menu" href="login.php">Login</a>
-        <a class="menu" href="signup.php">Criar conta</a>
-    <?php
-    }
-    ?>
+<nav class="nav">
+    <div class="nav__container">
+        <div class="nav__container__logo">
+            <p class="nav__container__logo__name">M</p>
+            <a href="index.php">
+                <img class="nav__container__logo__image" src="assets/images/mm.png" alt="Mismatch logo">
+            </a>
+            <p class="nav__container__logo__name">M</p>
+            <?php
+            if (isset($_SESSION['username'])) {
+                echo ('<p class="nav__container__user"> - Olá, ' . $_SESSION['username'] . '.</p>');
+            }
+            ?>
+        </div>
+        <div class="nav__menu t">
+
+            <div class="nav__menu__mini">
+                <div class="nav__menu__mini__row"> </div>
+                <div class="nav__menu__mini__row"> </div>
+                <div class="nav__menu__mini__row"> </div>
+            </div>
+
+            <ul>
+                <li class="nav__menu__item">
+                    <a class="nav__menu__item__button" href="index.php">Início</a>
+                </li>
+                <?php
+                if (isset($_SESSION['username'])) {
+                    ?>
+                    <li class="nav__menu__item">
+                        <a class="nav__menu__item__button" href="viewprofile.php">Perfil</a>
+                    </li>
+                    <li class="nav__menu__item">
+                        <a class="nav__menu__item__button" href="questionnaire.php">Tópicos</a>
+                    </li>
+                    <li class="nav__menu__item">
+                        <a class="nav__menu__item__button" href="mymismatch.php">MM</a>
+                    </li>
+                    <li class="nav__menu__item">
+                        <a class="nav__menu__item__button" href="logout.php">Logout</a>
+                    </li>
+                <?php
+                } else {
+                    ?>
+                    <li class="nav__menu__item">
+                        <a class="nav__menu__item__button" href="login.php">Login</a>
+                    </li>
+                    <li class="nav__menu__item">
+                        <a class="nav__menu__item__button" href="signup.php">Criar conta</a>
+                    </li>
+                <?php
+                }
+                ?>
+            </ul>
+        </div>
+    </div>
 </nav>
 <section class="view-section">
     <h2 class="view-title">Atualizar Perfil</h2>
@@ -173,28 +213,52 @@ require_once('templates/header.php');
                 </label>
             </div>
 
-            <div class="group">
-                <label for="genero" style="color: #747985">Gênero</label>
-                <select id="genero" name="genero">
-                    <option value="M" <?php if (!empty($genero) && $genero == 'M') echo 'selected = "selected"'; ?>>Masculino</option>
-                    <option value="F" <?php if (!empty($genero) && $genero == 'F') echo 'selected = "selected"'; ?>>Feminino</option>
-                </select>
+            <div class="radio-group">
+                <div class="group">
+                    <label for="genero" style="color: #747985">Gênero</label>
+                </div>
+                <div class="select-box">
+                    <select id="genero" name="genero">
+                        <option value="M" <?php if (!empty($genero) && $genero == 'M') echo 'selected = "selected"'; ?>>Masculino</option>
+                        <option value="F" <?php if (!empty($genero) && $genero == 'F') echo 'selected = "selected"'; ?>>Feminino</option>
+                    </select>
+                </div>
             </div>
-            <br />
-            <div class="group">
-                <input type="hidden" name="foto_antiga" value="<?php if (!empty($foto_antiga)) echo $foto_antiga; ?>" />
-                <label for="nova_foto" style="color: #747985">Foto de perfil</label>
+            <input type="hidden" name="foto_antiga" value="<?php if (!empty($foto_antiga)) echo $foto_antiga; ?>" />
 
+
+            <div class="file-group">
+                <input type="file" id="nova_foto" name="nova_foto" />
+                <input class="file-button" value="Escolher foto" type="button">
+                <span class="file-info">Envie uma foto</span>
             </div>
-            <input type="file" id="nova_foto" name="nova_foto" />
-            <br />
+
+            
+
             <div class="group">
                 <input class="cadastro-button" type="submit" value="Salvar perfil" name="submit" />
             </div>
         </fieldset>
     </form>
 </section>
+<script>
+    const uploadButton = document.querySelector('.file-button');
+    const fileInfo = document.querySelector('.file-info');
+    const realInput = document.getElementById('nova_foto');
 
+    uploadButton.addEventListener('click', () => {
+        realInput.click();
+    });
+
+    realInput.addEventListener('change', () => {
+        const name = realInput.value.split(/\\|\//).pop();
+        const truncated = name.length > 20 ?
+            name.substr(name.length - 20) :
+            name;
+
+        fileInfo.innerHTML = truncated;
+    });
+</script>
 <?php
 require_once('templates/footer.php');
 ?>

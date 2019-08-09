@@ -3,9 +3,33 @@
 $page_title = 'Cadastro';
 require_once('templates/header.php');
 ?>
-<nav>
-    <a class="menu" href="index.php">Início</a>
-    <a class="menu" href="login.php">Login</a>
+
+<nav class="nav">
+    <div class="nav__container">
+        <div class="nav__container__logo">
+            <p class="nav__container__logo__name">M</p>
+            <a href="index.php">
+                <img class="nav__container__logo__image" src="assets/images/mm.png" alt="Mismatch logo">
+            </a>
+            <p class="nav__container__logo__name">M</p>
+        </div>
+        <div class="nav__menu">
+            <div class="nav__menu__mini">
+                <div class="nav__menu__mini__row"> </div>
+                <div class="nav__menu__mini__row"> </div>
+                <div class="nav__menu__mini__row"> </div>
+            </div>
+            <ul>
+                <li class="nav__menu__item">
+                    <a class="nav__menu__item__button" href="index.php">Início</a>
+                </li>
+
+                <li class="nav__menu__item">
+                    <a class="nav__menu__item__button" href="login.php">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>
 <?php
 require_once('constants/app-vars.php');
@@ -29,8 +53,7 @@ if (isset($_POST['submit'])) {
             $query_insert = "INSERT INTO usuario (username, password, data_cadastro) VALUES ('$username', SHA('$password1'), NOW())";
 
             mysqli_query($dbc, $query_insert);
-
-            header('Location: editprofile.php');
+            echo '<p class="success">Conta criada com sucesso, realize o <a href="login.php"><strong>Login agora</strong></a>, e complete seu cadastro!</p><div class="cadastro"></div>';
 
             mysqli_close($dbc);
             exit();

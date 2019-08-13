@@ -14,6 +14,9 @@
     <?php
     $ordem = $_GET['ordem'];
     $campo_pesquisa = $_GET['pesquisa'];
+    $pagina_atual = isset($_GET['page']) ? $_GET['page'] : 1;
+    $ANUNCIOS_POR_PAGINA = 5;
+    $skip = (($pagina_atual - 1) * $ANUNCIOS_POR_PAGINA);
 
     echo '<table border="0" cellpadding="2">';
 
@@ -62,7 +65,7 @@
     }
 
 
-    function criar_consulta($campo_pesquisa)
+    function criar_consulta($campo_pesquisa, $ordem)
     {
         $query = "SELECT * FROM vaga_emprego";
         // * Substitui vírgulas por espaços.
@@ -90,11 +93,64 @@
         if (!empty($where)) {
             $query .= " WHERE $where";
         }
+
+        switch ($ordem) {
+            case 1:
+                $query .= " ORDER BY nome";
+                break;
+            case 2:
+                $query .= " ORDER BY nome DESC";
+                break;
+            case 3:
+                $query .= " ORDER BY estado";
+                break;
+            case 4:
+                $query .= " ORDER BY estado DESC";
+                break;
+            case 5:
+                $query .= " ORDER BY data_postagem";
+                break;
+            case 6:
+                $query .= " ORDER BY data_postagem DESC";
+                break;
+            default:
+                break;
+        }
         return $query;
     }
 
-    $query = criar_consulta($campo_pesquisa);
+    function criar_links_paginacao($campo_pesquisa, $ordem, $pagina_atual, $numero_paginas)
+    {
+        $links = '';
+        if ($pagina_atual > 1) {
+            $links .= '<a href="' . $_SERVER['PHP_SELF'] . '?pesquisa=' . $campo_pesquisa . '&ordem=' . $ordem . '&page=' . ($pagina_atual - 1) . '"> <- </a>';
+        } else {
+            $links .= '<- ';
+        }
 
+        for ($i = 1; $i <= $numero_paginas; $i++) {
+            if ($pagina_atual == $i) {
+                $links .= ' ' . $i;
+            } else {
+                $links .= '<a href="' . $_SERVER['PHP_SELF'] . '?pesquisa=' . $campo_pesquisa . '&ordem=' . $ordem . '&page=' . $i . '"> ' . $i . ' </a>';
+            }
+        }
+
+        if ($pagina_atual < $numero_paginas) {
+            $links .= '<a href="' . $_SERVER['PHP_SELF'] . '?pesquisa=' . $campo_pesquisa . '&ordem=' . $ordem . '&page=' . ($pagina_atual + 1) . '"> -> </a>';
+        } else {
+            $links .= ' ->';
+        }
+        return $links;
+    }
+
+    $query = criar_consulta($campo_pesquisa, $ordem);
+
+    $result = mysqli_query($dbc, $query);
+    $total_anuncios_encontrados = mysqli_num_rows($result);
+    $numero_paginas = ceil($total_anuncios_encontrados / $ANUNCIOS_POR_PAGINA);
+
+    $query = $query . " LIMIT $skip, $ANUNCIOS_POR_PAGINA";
     $result = mysqli_query($dbc, $query);
     while ($row = mysqli_fetch_array($result)) {
         echo '<tr class="results">';
@@ -105,7 +161,9 @@
         echo '</tr>';
     }
     echo '</table>';
-
+    if ($numero_paginas > 1) {
+        echo criar_links_paginacao($campo_pesquisa, $ordem, $pagina_atual, $numero_paginas);
+    }
     mysqli_close($dbc);
     ?>
 

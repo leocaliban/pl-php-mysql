@@ -10,16 +10,32 @@
 </head>
 
 <body>
+    <div class="content">
 
-    <img style="height: 200px;" src="assets/images/risk.png" alt="Risk Jobs" />
-    <img src="assets/images/persons.png" alt="Risk Jobs" style="float:right" />
-    <h3>Risk Jobs - Pesquisa</h3>
-    <form method="get" action="search.php">
-        <label for="pesquisa">Pesquise vagas de emprego</label><br />
-        <input type="text" id="pesquisa" name="pesquisa" /><br />
-        <input type="submit" name="submit" value="Pesquisar" />
-    </form>
 
+        <nav class="navbar">
+            <a class="navbar__home" href="search.html">
+                <img class="navbar__home__image" src="assets/images/risk.png" alt="Risk Jobs" />
+            </a>
+        </nav>
+        <section class="section">
+            <main class="section__main">
+                <form class="section__main__form" method="get" action="search.php">
+                    <label class="section__main__form__label" for="pesquisa">Pesquise vagas de emprego</label>
+                    <input type="text" hidden name="ordem" value="1">
+                    <input class="section__main__form__input" type="text" id="pesquisa" name="pesquisa" />
+                    <input class="section__main__form__button" type="submit" name="submit" value="Pesquisar" />
+                </form>
+            </main>
+        </section>
+
+
+        <!-- 
+<img src="assets/images/persons.png" alt="Risk Jobs" style="float:right" />
+<h3>Risk Jobs - Pesquisa</h3>
+ -->
+    </div>
+    <footer class="footer">DESIGNED BY <strong>Leocaliban</strong> &copy; 2019</footer>
 </body>
 
 </html>

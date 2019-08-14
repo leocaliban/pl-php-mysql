@@ -12,6 +12,12 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background: linear-gradient(to bottom, rgba(22, 24, 27, 0.5), rgba(244, 8, 8, 0.5)),
+    url("../images/background-mobile.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  transition: all 1s ease-in-out;
 }
 
 .content {
@@ -24,13 +30,15 @@ body {
   align-items: center;
   justify-content: center;
   background-color: #16181b;
-  box-shadow: 0px 5px 6px #ccc;
+  transition: all 1s ease-in-out;
 }
 
 .navbar__home {
   padding: 5px;
   display: block;
   height: 100%;
+  transition: all 2s ease-in-out;
+  margin: 0 80px;
 }
 
 .navbar__home__image {
@@ -38,11 +46,13 @@ body {
 }
 
 .section {
-  background-color: #fff;
   padding: 10px;
+  margin-top: 30%;
+  transition: all 1s ease-in-out;
 }
 
 .section__main__form {
+  background-color: rgba(255, 255, 255, 0.596);
   display: flex;
   flex-direction: column;
   border-radius: 0.3em;
@@ -51,21 +61,23 @@ body {
 }
 
 .section__main__form__label {
-  font-size: 1.5em;
+  font-size: 1.7em;
   font-weight: bold;
   text-align: center;
-  color: #8c6805;
-  margin: 5px 0;
+  color: #0b0b0e;
+  margin: 10px 0 15px 0;
+  text-shadow: 2px 2px 1px rgb(131, 131, 131);
 }
 
 .section__main__form__input {
   margin-bottom: 10px;
   border-radius: 1.4em;
-  height: 2em;
+  height: 2.2em;
   padding: 10px;
   font-size: 1em;
   color: #333333;
   border: 1px solid #888888;
+  font-family: inherit;
 }
 
 .section__main__form__input:focus {
@@ -73,27 +85,31 @@ body {
 }
 
 .section__main__form__button {
-  background-color: #f4b608;
   color: #fff;
   border: 2px solid #f4b608;
   border-radius: 1.4em;
   height: 2em;
   margin: 10px 0;
   font-family: inherit;
-  font-size: 1em;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  font-size: 1.2em;
+  transition: all 0.2s ease-in-out;
+  background: linear-gradient(180deg, rgba(244, 182, 8, 1) 35%, rgba(211, 60, 61, 1) 100%);
 }
 
-.section__main__form__button:active{
+.section__main__form__button:active {
   box-shadow: 0px 3px 6px #888888;
-  border-color:rgb(182, 135, 7); 
+  border-color: rgb(182, 135, 7);
 }
 
 .footer {
-  background-color: #0b0b0e;
+  background-color: #0b0b0e50;
   color: #fff;
-  padding: 8px;
+  padding: 6px;
   text-align: center;
   flex-shrink: 0;
+  font-size: 0.8em;
 }
 
 tr.heading {
@@ -124,4 +140,51 @@ a:visited {
 
 a:active {
   color: #000000;
+}
+
+@media screen and (min-width: 48em) {
+  body {
+    background: url("../images/persons.png");
+    background-position: 40px 100px;
+    background-size: auto;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+  .navbar {
+    box-shadow: 0px 5px 6px #ccc;
+  }
+
+  .navbar__home {
+    flex-grow: 1;
+  }
+
+  .section {
+    margin-left: 300px;
+    margin-top: 150px;
+  }
+
+  .section__main__form {
+    max-width: 700px;
+    background-color: rgba(255, 255, 255, 0.014);
+    box-shadow: none;
+  }
+
+  .section__main__form__input:hover {
+    border: 1px solid #333333;
+  }
+
+  .section__main__form__button {
+    cursor: pointer;
+  }
+  
+  .section__main__form__button:focus {
+    box-shadow: 0px 3px 7px rgb(182, 135, 7);
+    background: linear-gradient(180deg, rgba(244, 182, 8, 1) 45%, rgba(211, 60, 61, 1) 100%);
+    border-color: rgb(236, 176, 10);
+  }
+
+  .section__main__form__button:hover {
+    box-shadow: 0px 3px 6px #888888;
+    background: linear-gradient(180deg, rgb(197, 146, 6) 35%, rgba(211, 60, 61, 1) 100%);
+  }
 }
